@@ -69,7 +69,7 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 
 # TODO
 
-- [ ] Frontend
+- [] Frontend
   - [ ] Style Decisions
   - [ ] Wireframing - (Website mockup)
   - [ ] SPA or MPA
