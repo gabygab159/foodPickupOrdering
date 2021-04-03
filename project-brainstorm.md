@@ -69,15 +69,17 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 
 # TODO
 
-- [] Frontend
+## Frontend
+
   - [ ] Style Decisions
   - [ ] Wireframing - (Website mockup)
   - [ ] SPA or MPA
 
-- [ ] App Strategies/Requirements
+## App Strategies/Requirements
+
   - [ ] Review User's stories
 
-- [ ] Backend
+## Backend
   - [ ] Database Tables
   - [ ] ERD
   - [ ] (DDL) - create the sql files to build the database
