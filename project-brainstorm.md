@@ -77,7 +77,7 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 - [ ] App Strategies/Requirements
   - [ ] Review User's stories
 
-- [ ]Backend
+- [ ] Backend
   - [ ] Database Tables
   - [ ] ERD
   - [ ] (DDL) - create the sql files to build the database
