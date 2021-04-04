@@ -1,17 +1,25 @@
 nav {
   height: 120px;
-  background-color: #4056A1;
-  color: #FFFFFF;
+  background-color: #50e6da;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1.5em;
-  width:100%;
-  position: fixed;
-  top:0;
+  align-items: baseline;
 }
 
-.logo {
-  font-family: 'Bungee', cursive;
-  font-size: 2em;
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  display: inline;
+  padding-left: 2em;
 }
+.logo {
+font-family: 'Amatic SC', cursive;
+  font-size: 4em;
+  padding: .25em .25em 0em .25em;
+}
+
+nav .user {
+  font-family: 'Amatic SC', cursive;
+  font-size: 1em;
+}
+
+

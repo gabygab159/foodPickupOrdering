@@ -1,9 +1,24 @@
 // See: https://sass-lang.com/
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 body {
   background-color: #EEE;
+  font-family: 'Amatic SC', cursive;
+}
 
-  h1 {
-    color: #244751;
+@media only screen and (min-width: 0px) and (max-width: 1023px) {
+
+  body {
+    display: block;
   }
+
+}
+
+@media only screen and (min-width: 1024px) {
+
 }
