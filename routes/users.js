@@ -7,6 +7,21 @@
 
 const express = require('express');
 const router  = express.Router();
+const userDb  = require('../lib/users-queries');
+
+
+const userRouter = (db) = {
+  // GET /users/
+  router.get('/', (req, res) => {
+    userDb.getUsers()
+      .then((res) => {
+         res.rows)
+      .catch()
+  })
+
+
+
+};
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
