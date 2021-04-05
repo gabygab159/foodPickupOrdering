@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const accountSid = process.env.W_ASID;
+const accountSid = process.env.TW_ASID;
 const authToken = process.env.TW_ATOK;
 
 // const accountSid = 'AC65939d6e2b5b22881ef863c35dbd0659'; // Your Account SID from www.twilio.com/console
