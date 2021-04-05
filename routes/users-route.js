@@ -15,8 +15,6 @@ router.use((req, res, next) => {
   next();
 })
 
-
-
 module.exports = (database) => {
   // GET /users/
   router.get('/', (req, res) => {
@@ -30,17 +28,21 @@ module.exports = (database) => {
   })
 
   router.get('/:id', (req, res) => {
-    getUsersById(id)
-      .then((users) => {
-        res.send(users);
-      })
+    if (req.params.id) {
+      getUsersById(req.params.id)
+        .then((users) => {
+          res.send(users);
+        })
+    }
   })
 
-  router.get('/:email', (req, res) => {
-    if (req.params.email) {
+  router.get('/email/:email', (req, res) => {
+    // const req.params.email = 'alice@bla.com';
+    const email = 'alice@bla.com';
+    if (email) {
       getUsersByEmail(email)
-        .then((email) => {
-          res.send(email);
+        .then((users) => {
+          res.send(users);
         })
     }
   });
