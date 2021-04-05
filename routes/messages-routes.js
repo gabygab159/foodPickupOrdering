@@ -6,20 +6,20 @@
  */
 const express = require('express');
 const router  = express.Router();
-const { getMenuItems, getMenuItemsById }  = require('../lib/menus-queries');
+const { getMessages, getMessagesById, getMessagesByOrderId }  = require('../lib/messages-queries');
 
 // Router middlewares with no mount path (will be executed on every request to the router)
 router.use((req, res, next) => {
-  console.log('router.menus has been called');
+  console.log('router.messages has been called');
   next();
 })
 
 module.exports = (database) => {
   // GET /menus/
   router.get('/', (req, res) => {
-    getMenuItems()
-      .then((menus) => {
-        res.send(menus);
+    getMessages()
+      .then((m) => {
+        res.send(m);
       })
       .catch((err) => {
         return err.messages;
