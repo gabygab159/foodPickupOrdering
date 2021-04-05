@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const accountSid = process.env.W_ASID;
 const authToken = process.env.TW_ATOK;
 
