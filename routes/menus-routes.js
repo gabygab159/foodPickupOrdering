@@ -12,7 +12,7 @@ const { getMenus, getMenusById }  = require('../lib/menus-queries');
 router.use((req, res, next) => {
   console.log('router.menus has been called');
   next();
-});
+})
 
 module.exports = (database) => {
   // GET /menus/
@@ -23,8 +23,8 @@ module.exports = (database) => {
       })
       .catch((err) => {
         return err.messages;
-      });
-  });
+      })
+  })
 
   // GET /menus/:id
   router.get('/:id', (req, res) => {
@@ -35,9 +35,9 @@ module.exports = (database) => {
         })
         .catch((err) => {
           res.send(err.messages);
-        });
+        })
     }
-  });
+  })
 
   return router;
-};
+}
