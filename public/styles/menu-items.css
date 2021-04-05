@@ -31,3 +31,7 @@ flex-direction: column;
 .menu-price {
   padding: 1em 0em 1em 0em;
 }
+
+.add-to-cart {
+  margin-bottom: 1em;
+}
