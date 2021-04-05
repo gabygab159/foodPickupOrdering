@@ -14,12 +14,6 @@ const PORT       = process.env.PORT || 8080;
 const database = require('./lib/db');
 const usersRouter = require('./routes/users-route');
 
-// PG database client/connection setup
-// const { Pool } = require('pg');
-// const dbParams = require('./lib/db.js');
-// const db = new Pool(dbParams);
-// db.connect();
-
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -43,7 +37,7 @@ const widgetsRoutes = require("./routes/widgets");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use('/users', usersRouter(database));
-app.use("/api/widgets", widgetsRoutes(database));
+
 // Note: mount other resources here, using the same pattern above
 
 
