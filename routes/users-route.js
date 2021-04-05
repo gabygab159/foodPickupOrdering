@@ -7,34 +7,48 @@
 
 const express = require('express');
 const router  = express.Router();
-const { getUsers, getUsersByEmail }  = require('../lib/users-queries');
+const { getUsers, getUsersById, getUsersByEmail }  = require('../lib/users-queries');
 
 // Router middlewares with no mount path (will be executed on every request to the router)
-
-
-
-// GET /users/
-
-router.get('/', (req, res, next) => {
-  getUsers()
-    .then((users) => {
-      return res.users;
-    })
-    .catch((err) => {
-      return err.messages;
-    })
+router.use((req, res, next) => {
+  console.log('router.user has been called');
+  next();
 })
 
-router.get('/:email', (req, res, next) => {
-  if (req.params.email) {
-    getUsersByEmail(email)
-      .then((email) => {
-        return res.email;
-      })
-  }
-});
 
-module.exports = router;
+
+module.exports = (database) => {
+  // GET /users/
+  router.get('/', (req, res) => {
+    getUsers()
+      .then((users) => {
+        res.send(users);
+      })
+      .catch((err) => {
+        return err.messages;
+      })
+  })
+
+  router.get('/:id', (req, res) => {
+    getUsersById(id)
+      .then((users) => {
+        res.send(users);
+      })
+  })
+
+  router.get('/:email', (req, res) => {
+    if (req.params.email) {
+      getUsersByEmail(email)
+        .then((email) => {
+          res.send(email);
+        })
+    }
+  });
+
+  return router;
+}
+
+// module.exports = (database) => { router };
 
 // const userRouter = (db) = {
 //   // GET /users/
