@@ -39,9 +39,10 @@ module.exports = (database) => {
     }
   });
 
+  // GET /messages/order/:id
   router.get('/order/:id', (req, res) => {
-    if (req.params.order_id) {
-      getMessagesByOrderId(req.params.order_id)
+    if (req.params.id) {
+      getMessagesByOrderId(req.params.id)
         .then(m => {
           res.send(m);
         })
