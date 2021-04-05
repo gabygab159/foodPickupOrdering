@@ -1,0 +1,39 @@
+nav {
+  height: auto;
+  background-color: #50e6da;
+  display: flex;
+  align-items: baseline;
+  position: fixed;
+  width: 100%;
+}
+
+nav input {
+  background: transparent;
+  opacity: .7;
+  margin-left: 20em;
+}
+
+.logo-icon {
+  width: 5em;
+  height: auto;
+  display: inline;
+  padding-left: 2em;
+  padding-top: 2em;
+}
+
+.logo {
+font-family: 'Amatic SC', cursive;
+  font-size: 4em;
+  padding: .25em .25em 0em .25em;
+}
+
+nav .user {
+  font-family: 'Amatic SC', cursive;
+  font-size: 1em;
+  padding-left: 40em;
+}
+
+nav input {
+  padding-left: 3em;
+}
+
