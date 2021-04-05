@@ -6,7 +6,7 @@
  */
 const express = require('express');
 const router  = express.Router();
-const { getMenus, getMenusById }  = require('../lib/menus-queries');
+const { getMenuItems, getMenuItemsById }  = require('../lib/menus-queries');
 
 // Router middlewares with no mount path (will be executed on every request to the router)
 router.use((req, res, next) => {
@@ -17,7 +17,7 @@ router.use((req, res, next) => {
 module.exports = (database) => {
   // GET /menus/
   router.get('/', (req, res) => {
-    getMenus()
+    getMenuItems()
       .then((menus) => {
         res.send(menus);
       })
@@ -29,7 +29,7 @@ module.exports = (database) => {
   // GET /menus/:id
   router.get('/:id', (req, res) => {
     if (req.params.id) {
-      getMenusById(req.params.id)
+      getMenuItemsById(req.params.id)
         .then((menus) => {
           res.send(menus);
         })
