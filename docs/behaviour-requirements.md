@@ -151,12 +151,11 @@
   - if user is not logged in:
 
 
-- POST -->
-
-
-
+- POST 
 
 OUT
 // (link) -> GET /menus/:id to a popup window or to the map/info window section
 //  (link) -> GET /menus/:id to a popup window or to the map/info window section
 // (link) -> GET /restaurants/:id to a popup window or map/info window section
+
+-->
