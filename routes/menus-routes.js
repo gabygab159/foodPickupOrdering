@@ -27,6 +27,7 @@ module.exports = (database) => {
       })
   })
 
+  // GET /menus/:id
   router.get('/:id', (req, res) => {
     if (req.params.id) {
       getMenusById(req.params.id)
