@@ -37,7 +37,19 @@ module.exports = (database) => {
           res.send(err.messages);
         })
     }
-  })
+  });
+
+  router.get('/order/:id', (req, res) => {
+    if (req.params.order_id) {
+      getMessagesByOrderId(req.params.order_id)
+        .then(m => {
+          res.send(m);
+        })
+        .catch(err => {
+          res.send(err.messages);
+        })
+    }
+  });
 
   return router;
 }
