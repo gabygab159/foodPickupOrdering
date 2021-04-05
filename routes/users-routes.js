@@ -12,7 +12,7 @@ const { getUsers, getUsersById, getUsersByEmail }  = require('../lib/users-queri
 router.use((req, res, next) => {
   console.log('router.user has been called');
   next();
-})
+});
 
 module.exports = (database) => {
   // GET /users/
@@ -23,8 +23,8 @@ module.exports = (database) => {
       })
       .catch((err) => {
         return err.messages;
-      })
-  })
+      });
+  });
 
   // GET /users/:id
   router.get('/:id', (req, res) => {
@@ -32,9 +32,9 @@ module.exports = (database) => {
       getUsersById(req.params.id)
         .then((users) => {
           res.send(users);
-        })
+        });
     }
-  })
+  });
 
   // GET /users/email/:email
   router.get('/email/:email', (req, res) => {
@@ -44,9 +44,9 @@ module.exports = (database) => {
       getUsersByEmail(email)
         .then((users) => {
           res.send(users);
-        })
+        });
     }
   });
 
   return router;
-}
+};
