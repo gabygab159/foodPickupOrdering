@@ -32,7 +32,9 @@ router.get('/:email', (req, res, next) => {
         return res.email;
       })
   }
-})
+});
+
+module.exports = router;
 
 // const userRouter = (db) = {
 //   // GET /users/
