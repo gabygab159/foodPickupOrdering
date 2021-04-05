@@ -31,12 +31,14 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoute = require("./routes/users-routes");
 const menusRoute = require("./routes/menus-routes");
+const messageRoute = require("./routes/messages-routes");
 
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use('/users', usersRouter(database));
 app.use('/menus', menusRoute(database));
+app.use('/messages', messageRoute(database));
 
 // Note: mount other resources here, using the same pattern above
 

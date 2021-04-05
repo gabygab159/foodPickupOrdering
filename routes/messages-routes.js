@@ -24,7 +24,7 @@ module.exports = (database) => {
       .catch((err) => {
         return err.messages;
       })
-  })
+  });
 
   // GET /messages/:id
   router.get('/:id', (req, res) => {
