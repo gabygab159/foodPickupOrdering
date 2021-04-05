@@ -1,4 +1,11 @@
 body {
   background-color: #EEE;
   font-family: 'Amatic SC', cursive;
+  font-size: 1.2em;
+}
+
+.main-container {
+  display:flex;
+  flex-direction: row;
+  padding-top: 6em;
 }

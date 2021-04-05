@@ -2,16 +2,32 @@
   display: flex;
   flex-direction: column;
   width: 70em;
+  height: 60em;
+  overflow: auto;
 }
-.menu-items{
-  border: black solid thin;
+
+.menu-items {
+  border: black solid 1.5px ;
   margin: 2em 2em 0em 2em;
+  height: 12em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-contents {
+padding-right: 3em;
+display: flex;
+flex-direction: column;
 }
 
 .menu-photo {
-  max-width: 100%
+  max-width: 100%;
   height: auto;
-  width: 188px;
-  height: 111px;
+  width: 13em;
   overflow: hidden;
+  padding: 2em 0em 2em 2em;
+}
+
+.menu-price {
+  padding: 2em 0em 1em 0em;
 }

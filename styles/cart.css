@@ -8,13 +8,14 @@
 }
 
 .cart-container {
-  border: black solid thin;
-  height: 24em;
+  border: black solid 1.5px;
+  height: 20em;
 }
 
 
 .message-container {
-  border: black solid thin;
-  height: 24em;
+  border: black solid 1.5px;
+  height: 20em;
   margin-top: 2em;
 }
+

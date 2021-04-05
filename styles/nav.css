@@ -1,8 +1,16 @@
 nav {
-  height: 120px;
+  height: auto;
   background-color: #50e6da;
   display: flex;
   align-items: baseline;
+  position: fixed;
+  width: 100%;
+}
+
+nav input {
+  background: transparent;
+  opacity: .7;
+  margin-left: 20em;
 }
 
 .logo-icon {
@@ -10,7 +18,9 @@ nav {
   height: 50px;
   display: inline;
   padding-left: 2em;
+  padding-top: 2em;
 }
+
 .logo {
 font-family: 'Amatic SC', cursive;
   font-size: 4em;
@@ -20,6 +30,13 @@ font-family: 'Amatic SC', cursive;
 nav .user {
   font-family: 'Amatic SC', cursive;
   font-size: 1em;
+  /* padding-left: 20em; */
 }
 
+.nav-right {
+  float: right;
+  /* display: flex;
+  align-content: space-between;
+  justify-content: right; */
+}
 
