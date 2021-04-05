@@ -4,7 +4,6 @@
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-
 const express = require('express');
 const router  = express.Router();
 const { getUsers, getUsersById, getUsersByEmail }  = require('../lib/users-queries');
@@ -13,7 +12,7 @@ const { getUsers, getUsersById, getUsersByEmail }  = require('../lib/users-queri
 router.use((req, res, next) => {
   console.log('router.user has been called');
   next();
-})
+});
 
 module.exports = (database) => {
   // GET /users/
@@ -24,18 +23,20 @@ module.exports = (database) => {
       })
       .catch((err) => {
         return err.messages;
-      })
-  })
+      });
+  });
 
+  // GET /users/:id
   router.get('/:id', (req, res) => {
     if (req.params.id) {
       getUsersById(req.params.id)
         .then((users) => {
           res.send(users);
-        })
+        });
     }
-  })
+  });
 
+  // GET /users/email/:email
   router.get('/email/:email', (req, res) => {
     // const req.params.email = 'alice@bla.com';
     const email = 'alice@bla.com';
@@ -43,40 +44,9 @@ module.exports = (database) => {
       getUsersByEmail(email)
         .then((users) => {
           res.send(users);
-        })
+        });
     }
   });
 
   return router;
-}
-
-// module.exports = (database) => { router };
-
-// const userRouter = (db) = {
-//   // GET /users/
-//   router.get('/', (req, res) => {
-//     userDb.getUsers()
-//       .then((res) => {
-//          res.rows)
-//       .catch()
-//   })
-
-
-
-// };
-
-// module.exports = (db) => {
-//   router.get("/", (req, res) => {
-//     db.query(`SELECT * FROM users;`)
-//       .then(data => {
-//         const users = data.rows;
-//         res.json({ users });
-//       })
-//       .catch(err => {
-//         res
-//           .status(500)
-//           .json({ error: err.message });
-//       });
-//   });
-//   return router;
-// };
+};

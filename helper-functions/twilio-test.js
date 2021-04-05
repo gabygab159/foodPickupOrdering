@@ -5,4 +5,4 @@ const message = "Testing from twilio helper function";
 
 sendSMS(phone,message)
   .then(r => console.log(r))
-  .catch(e => console.error(e))
+  .catch(e => console.error(e));

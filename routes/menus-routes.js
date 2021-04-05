@@ -4,7 +4,6 @@
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-
 const express = require('express');
 const router  = express.Router();
 const { getMenus, getMenusById }  = require('../lib/menus-queries');
@@ -13,7 +12,7 @@ const { getMenus, getMenusById }  = require('../lib/menus-queries');
 router.use((req, res, next) => {
   console.log('router.menus has been called');
   next();
-})
+});
 
 module.exports = (database) => {
   // GET /menus/
@@ -24,17 +23,21 @@ module.exports = (database) => {
       })
       .catch((err) => {
         return err.messages;
-      })
-  })
+      });
+  });
 
+  // GET /menus/:id
   router.get('/:id', (req, res) => {
     if (req.params.id) {
       getMenusById(req.params.id)
         .then((menus) => {
           res.send(menus);
         })
+        .catch((err) => {
+          res.send(err.messages);
+        });
     }
-  })
+  });
 
   return router;
-}
+};
