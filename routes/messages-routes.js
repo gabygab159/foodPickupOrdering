@@ -15,7 +15,7 @@ router.use((req, res, next) => {
 })
 
 module.exports = (database) => {
-  // GET /menus/
+  // GET /messages/
   router.get('/', (req, res) => {
     getMessages()
       .then((m) => {
@@ -26,12 +26,12 @@ module.exports = (database) => {
       })
   })
 
-  // GET /menus/:id
+  // GET /messages/:id
   router.get('/:id', (req, res) => {
     if (req.params.id) {
-      getMenuItemsById(req.params.id)
-        .then((menus) => {
-          res.send(menus);
+      getMessagesById(req.params.id)
+        .then((m) => {
+          res.send(m);
         })
         .catch((err) => {
           res.send(err.messages);
