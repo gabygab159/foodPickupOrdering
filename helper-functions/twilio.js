@@ -17,7 +17,7 @@ const sendSMS = (phone, message) => {
     return message.sid
   })
   .catch((err) => {
-    return err.message
+    return err.messages
   })
 
 }
