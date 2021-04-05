@@ -19,3 +19,34 @@
   margin-top: 2em;
 }
 
+.cart-head {
+ display: flex;
+ flex-direction: column;
+ width: 100%;
+ height: 4em;
+border-bottom: grey solid 2px;
+}
+
+p.restaurant-name {
+  font-size: 1.6em;
+  margin-top: .2em;
+  margin-left: .5em;
+  margin-bottom: 0;
+}
+
+.restaurant-address {
+  margin-top: 0;
+  margin-left: .5em;
+  margin-bottom: 0;
+}
+.cart-body {
+
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: end ;
+}
+
+
+

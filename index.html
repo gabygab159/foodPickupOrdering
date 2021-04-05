@@ -112,15 +112,26 @@
 
     <div class="right-container">
       <section class="cart-container">
-        <div class="cart-head"></div>
-        <span>Restaurant Name</span>›
-        <span>Restaurant Address</span>
-        <div class="cart-body"></div>
-        <div></div>
+        <div class="cart-head">
+          <p class="restaurant-name">All About Soups</p>
+          <p class="restaurant-address">1234 Soup Dr. Toronto, ON M6W9R7</p>
+        </div>
+        <div class="cart-body">
+          <ul class="cart-item-container">
+            <li> <span class="cart-item-quantity">2</span>
+              <span class="cart-item">Tomato Soup</span>
+              <span class="cart-item-price">$11</span>
+            </li>
+          </ul>
+        </div>
+        <div class="cart-total">
+          <span>Subtotal</span>
+          <span>Tax</span>
+          <span>Total</span>
+        </div>
         <div class="cart-footer"></div>
+        <button id="checkout">Checkout</button>
       </section>
-      <section class="messages"></section>
-
 
       <section class="message-container">
         <div class="message-head"></div>
@@ -130,7 +141,6 @@
         <span class="time">Ready in...</span>
         <div class="message-footer"></div>
       </section>
-
     </div>
   </div>
 </body>
