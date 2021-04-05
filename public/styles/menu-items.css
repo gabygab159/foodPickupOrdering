@@ -12,10 +12,11 @@
   height: 12em;
   display: flex;
   justify-content: space-between;
+  background: rgb(246, 246, 170);
 }
 
 .menu-contents {
-padding-right: 3em;
+padding-right: 13em;
 display: flex;
 flex-direction: column;
 }
@@ -23,11 +24,15 @@ flex-direction: column;
 .menu-photo {
   max-width: 100%;
   height: auto;
-  width: 13em;
+  width: 15em;
   overflow: hidden;
   padding: 2em 0em 2em 2em;
 }
 
 .menu-price {
-  padding: 2em 0em 1em 0em;
+  padding: 1em 0em 1em 0em;
+}
+
+.add-to-cart {
+  margin-bottom: 1em;
 }
