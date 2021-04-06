@@ -52,5 +52,13 @@ module.exports = (database) => {
     }
   });
 
+  // POST /messages/new/:order_id
+  // When the user checkout, POST /orders/new/ will be called
+  // then a new message will be sent to the restaurant
+  // When the restaurant start preparing the food, the prep time will be set
+  // and a message will be sent to the user and the website will be updated with the message
+  // When the food is ready, a new message will be send to the user to inform order is ready to pick up
+  // and website is updated
+
   return router;
 }
