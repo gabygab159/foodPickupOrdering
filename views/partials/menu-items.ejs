@@ -1,12 +1,15 @@
+<% for (let item in menus) { %>
 <section class="menu-items">
   <div>
-    <img class="menu-photo" src="images/soup.png" alt="Picture of food">
+    <img class="menu-photo" src="<%= menus[item].image_url %>" alt="Picture of food">
   </div>
   <div class="menu-contents">
-    <h1 class="menu-name">Tomato Soup</h1>
-    <div class="menu-description">Soup with a lot of good veggies and stuff</div>
-    <dish class="menu-price">$11</dish>
+    <h1 class="menu-name"><%= menus[item].name %></h1>
+    <div class="menu-description"><%= menus[item].description%></div>
+    <dish class="menu-price"><%= menus[item].price %></dish>
     <div class="add-to-cart">
       <button>Add to cart</button>
     </div>
+  </div>
 </section>
+<% } %>
