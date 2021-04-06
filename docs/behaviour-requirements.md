@@ -87,6 +87,10 @@
       - Perform POST /order_items/:order_id/menu_item_id:
         - quantity
       - Define the status is very important (where status === active means checkout is done)
+### POST /update/:order_id (/message/update/:order_id)
+  - Notify user via SMS
+  - add message to the database
+  - change the order status to close
 
   - Options for order status
     - open -> cart has items but not checkout
@@ -117,12 +121,6 @@
     - setTimeout with callback
         - to send SMS to the user 
         - POST /messages/update/:order_id
-
-### POST /update/:order_id (/message/update/:order_id)
-  - Notify user via SMS
-  - add message to the database
-  - change the order status to close
-
 
 ## ORDER_ITEMS
 
