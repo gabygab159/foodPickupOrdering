@@ -24,8 +24,8 @@ module.exports = (database) => {
   router.get('/:id', (req, res) => {
     if (req.params.id) {
       getRestaurantById(req.params.id)
-        .then((menus) => {
-          res.send(menus);
+        .then((restaurant) => {
+          res.send(restaurant);
         })
         .catch((err) => {
           res.send(err.messages);
