@@ -6,5 +6,5 @@ CREATE TABLE orders (
   restaurant_id INTEGER REFERENCES restaurants(id) ON DELETE CASCADE,
   total INT NOT NULL DEFAULT 0,
   date TIMESTAMP,
-  status VARCHAR(255)
+  status INTEGER
 );
