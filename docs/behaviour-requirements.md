@@ -68,7 +68,7 @@
 
   - list a specific order with id = :id
 
-### GET /:user_id (/orders/:user_id (stretch)
+### GET /:user_id (/orders/:user_id
 
   - list orders where orders.user_id = :user_id and status = active
 
