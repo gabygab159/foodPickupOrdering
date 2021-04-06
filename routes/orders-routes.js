@@ -22,12 +22,12 @@ module.exports = (database) => {
         return err.messages;
       })
   })
-
+  // GET Orders / id
   router.get('/:id', (req, res) => {
    if (req.params.id) {
      getOrderById(req.params.id)
-      .then((menus) => {
-        res.send(menus);
+      .then((orders) => {
+        res.send(orders);
       })
       .catch((err) => {
         res.send(err.messages);
