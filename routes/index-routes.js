@@ -17,12 +17,11 @@ const { render } = require('ejs');
 router.use((req, res, next) => {
   console.log('index has been called');
   next();
-})
+});
 
 module.exports = (database) => {
   // GET /
   router.get('/', (req, res) => {
-    res.render('pages/index');
     // Getting user information and rendering nav page with user object
     getUsersById(1)
       .then((user) => {
@@ -35,19 +34,12 @@ module.exports = (database) => {
     // Get all dishes from the menu and render menu_items page with all objects from the menu_items table
     getMenuItems()
       .then((menus) => {
-        res.render('partials/menu-items', menus);
+        const templateVars = { menus };
+        res.render('pages/index', templateVars);
       })
       .catch((err) => {
         res.render('partials/messages', err.messages);
       })
-
-    // Render cart
-    res.render('partials/cart');
-
-    // Render messages
-    res.render('partials/messages')
-
-
   })
 
   return router;

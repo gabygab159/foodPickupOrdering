@@ -19,11 +19,9 @@ module.exports = (database) => {
   router.get('/', (req, res) => {
     getMenuItems()
       .then((menus) => {
-        // console.log(menus);
+        console.log(menus);
         // res.send(menus);
-        const templateVars = {
-          menus
-        };
+        const templateVars = { menus };
         res.render("partials/menu-items", templateVars);
       })
       .catch((err) => {
