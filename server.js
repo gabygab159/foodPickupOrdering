@@ -2,14 +2,14 @@
 require('dotenv').config();
 
 // Web server config
-const ENV        = process.env.ENV || "development";
-const express    = require("express");
+const ENV = process.env.ENV || "development";
+const express = require("express");
 const bodyParser = require("body-parser");
-const sass       = require("node-sass-middleware");
-const morgan     = require('morgan');
+const sass = require("node-sass-middleware");
+const morgan = require('morgan');
 
-const app        = express();
-const PORT       = process.env.PORT || 8080;
+const app = express();
+const PORT = process.env.PORT || 8080;
 
 const database = require('./lib/db');
 
@@ -18,7 +18,9 @@ const database = require('./lib/db');
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -36,9 +38,11 @@ const messagesRoute = require("./routes/messages-routes");
 const orderItemsRoute = require("./routes/order-items-routes");
 const restaurantRoute = require("./routes/restaurants-routes.js");
 const indexRoute = require("./routes/index-routes");
+const { render } = require('ejs');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
+// app.use('/', )
 app.use('/users', usersRoute(database));
 app.use('/menus', menusRoute(database));
 app.use('/orders', ordersRoute(database));

@@ -19,12 +19,18 @@ module.exports = (database) => {
   router.get('/', (req, res) => {
     getMenuItems()
       .then((menus) => {
-        res.send(menus);
+        // console.log(menus);
+        // res.send(menus);
+        const templateVars = {
+          menus
+        };
+        res.render("partials/menu-items", templateVars);
       })
       .catch((err) => {
-        return err.messages;
-      })
-  })
+        console.error(err);
+        res.status(500).json(err);
+      });
+  });
 
   // GET /menus/:id
   router.get('/:id', (req, res) => {
