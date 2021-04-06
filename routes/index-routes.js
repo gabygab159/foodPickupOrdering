@@ -14,10 +14,10 @@ const { getUsersById } = require('../lib/users-queries');
 const { render } = require('ejs');
 
 // Router middlewares with no mount path (will be executed on every request to the router)
-router.use((req, res, next) => {
-  console.log('index has been called');
-  next();
-});
+// router.use((req, res, next) => {
+//   console.log('index has been called');
+//   //next();
+// });
 
 module.exports = (database) => {
   // GET /
