@@ -35,8 +35,7 @@ const ordersRoute = require("./routes/orders-routes");
 const messagesRoute = require("./routes/messages-routes");
 const orderItemsRoute = require("./routes/order-items-routes");
 const restaurantRoute = require("./routes/restaurants-routes.js");
-
-
+const indexRoute = require("./routes/index-routes");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -46,15 +45,17 @@ app.use('/orders', ordersRoute(database));
 app.use('/messages', messagesRoute(database));
 app.use('/order-items', orderItemsRoute(database));
 app.use('/restaurants', restaurantRoute(database));
+app.use('/', indexRoute(database));
 
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("pages/index");
-});
+// app.get("/", (req, res) => {
+//   res.render("pages/index");
+//   res.render("partials/menu-items", menus)
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
