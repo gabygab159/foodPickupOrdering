@@ -3,7 +3,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const { getOrders, getOrderById }  = require('../lib/orders-queries');
+const { getOrders, getOrderById, addNewOrder }  = require('../lib/orders-queries');
 
 // Router middlewares with no mount path (will be executed on every request to the router)
 router.use((req, res, next) => {
@@ -24,15 +24,26 @@ module.exports = (database) => {
   })
   // GET Orders / id
   router.get('/:id', (req, res) => {
-   if (req.params.id) {
-     getOrderById(req.params.id)
-      .then((orders) => {
-        res.send(orders);
+
+      if (req.params.id) {
+      getOrderById(req.params.id)
+      .then((order) => {
+        res.send(order);
       })
       .catch((err) => {
         res.send(err.messages);
       })
     }
+  })
+
+  router.post('/new', (req,res) => {
+    if (req.params.id) {
+      getOrderById(req.params.id)
+      .then((order) => {
+        // if order.status is active call addNewOrder(order)
+      })
+    }
+
   })
 
   return router;
