@@ -1,7 +1,7 @@
 .menu-container {
   display: flex;
   flex-direction: column;
-  width: 70em;
+  width: 45%;
   height: 60em;
   overflow: auto;
 }

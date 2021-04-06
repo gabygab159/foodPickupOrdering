@@ -1,5 +1,5 @@
 .right-container {
-  width: 70em;
+  width: 45%;
   margin: 2em 2em 0em 2em;
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@ p.restaurant-name {
 .checkout {
    margin-top: .5em;
    margin-bottom: 2em;
-  padding: 0em 20em 0 20em;
+   width: 100%;
 }
 
 .empty-cart {

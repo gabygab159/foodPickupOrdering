@@ -1,6 +1,6 @@
 
 
-<% if(menus) { %> 
+<% if(menus) { %>
 
 
   <% for (let item in menus) { %>
@@ -12,7 +12,7 @@
     <div class="menu-contents">
       <h1 class="menu-name"><%= menus[item].name %></h1>
       <div class="menu-description"><%= menus[item].description%></div>
-      <dish class="menu-price"><%= menus[item].price %></dish>
+      <dish class="menu-price">$<%= (menus[item].price *.01).toFixed(2) %></dish>
       <div class="add-to-cart">
         <button>Add to cart</button>
       </div>
