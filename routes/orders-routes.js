@@ -7,7 +7,7 @@ const { getOrders, getOrderById, addNewOrder }  = require('../lib/orders-queries
 
 // Router middlewares with no mount path (will be executed on every request to the router)
 router.use((req, res, next) => {
-  console.log('router.user has been called');
+  console.log('router.orders has been called');
   next();
 });
 
@@ -39,15 +39,17 @@ module.exports = (database) => {
 
   // work in progress
 
-  // router.post('/new', (req,res) => {
-  //   if (req.params.id) {
-  //     getOrderById(req.params.id)
-  //     .then((order) => {
-  //       // if (order.status) is active call addNewOrder(order)
-  //     })
-  //   }
-
-  // })
+  router.post('/new', (req, res) => {
+    let orderParams = [ 3, 1, 100, '2021/04/06', 1 ];
+    addNewOrder(orderParams)
+      .then((order) => {
+        console.log("order inside the route: ", order.id)
+        res.send(order);
+      })
+      .catch((err) => {
+        res.send(err.messages);
+      })
+  });
 
   return router;
 }
