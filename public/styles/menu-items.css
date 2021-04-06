@@ -1,8 +1,9 @@
 .menu-container {
   display: flex;
   flex-direction: column;
+  justify-content:space-between;
   width: 45%;
-  height: 60em;
+  /* height: 60em; */
   overflow: auto;
 }
 
@@ -11,20 +12,20 @@
   margin: 2em 2em 0em 2em;
   height: 12em;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   background: rgb(246, 246, 170);
 }
 
 .menu-contents {
-padding-right: 10em;
+/* padding-right: 10em; */
 display: flex;
 flex-direction: column;
+margin-left: 5em;
 }
 
 .menu-photo {
-  max-width: 100%;
-  height: auto;
-  width: 15em;
+  height: 12em;
+  width: 16em;
   overflow: hidden;
   padding: 2em 0em 2em 2em;
 }

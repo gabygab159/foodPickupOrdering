@@ -7,7 +7,7 @@ body {
 .main-container {
   display:flex;
   flex-direction: row;
-
+  justify-content: space-between;
   margin: auto;
   padding: 10% 0% 2% 2%;
 }
