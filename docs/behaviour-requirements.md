@@ -68,7 +68,7 @@
 
   - list a specific order with id = :id
 
-### GET /:user_id (/orders/:user_id (stretch)
+### GET /:user_id (/orders/:user_id
 
   - list orders where orders.user_id = :user_id and status = active
 
@@ -87,11 +87,15 @@
       - Perform POST /order_items/:order_id/menu_item_id:
         - quantity
       - Define the status is very important (where status === active means checkout is done)
+### POST /update/:order_id (/message/update/:order_id)
+  - Notify user via SMS
+  - add message to the database
+  - change the order status to close
 
   - Options for order status
-    - open -> cart has items but not checkout
-    - active -> cart has items and checked out
-    - closed -> order has been fulfilled
+    - (0) closed -> order has been fulfilled
+    - (1) open -> cart has items but not checkout
+    - (2) active -> cart has items and checked out
 
 
 ## MESSAGES
@@ -117,12 +121,6 @@
     - setTimeout with callback
         - to send SMS to the user 
         - POST /messages/update/:order_id
-
-### POST /update/:order_id (/message/update/:order_id)
-  - Notify user via SMS
-  - add message to the database
-  - change the order status to close
-
 
 ## ORDER_ITEMS
 

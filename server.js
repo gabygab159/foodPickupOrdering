@@ -12,7 +12,6 @@ const app        = express();
 const PORT       = process.env.PORT || 8080;
 
 const database = require('./lib/db');
-const usersRouter = require('./routes/users-routes');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -33,13 +32,16 @@ app.use(express.static("public"));
 const usersRoute = require("./routes/users-routes");
 const menusRoute = require("./routes/menus-routes");
 const ordersRoute = require("./routes/orders-routes");
+const messagesRoute = require("./routes/messages-routes");
+
 
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use('/users', usersRouter(database));
+app.use('/users', usersRoute(database));
 app.use('/menus', menusRoute(database));
 app.use('/orders', ordersRoute(database));
+app.use('/messages', messagesRoute(database));
 
 // Note: mount other resources here, using the same pattern above
 
