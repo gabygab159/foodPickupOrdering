@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body>
+  <header>
+    <%- include('../partials/nav'); %>
+  </header>
+
+  <div class="main-container">
+
+    <!-- Left Menu -->
+    <main class="menu-container">
+    <%- include('../partials/menu-items'); %>
+    </main>
+
+    <!-- Cart on right -->
+    <div class="right-container">
+      <section class="cart-container">
+        <%- include('../partials/cart'); %>
+      </section>
+
+      <!-- Messages on right -->
+      <section class="message-container">
+        <%- include('../partials/messages'); %>
+      </section>
+    </div>
+  </div>
+</body>
