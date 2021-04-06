@@ -36,15 +36,18 @@ module.exports = (database) => {
     }
   })
 
-  router.post('/new', (req,res) => {
-    if (req.params.id) {
-      getOrderById(req.params.id)
-      .then((order) => {
-        // if order.status is active call addNewOrder(order)
-      })
-    }
 
-  })
+  // work in progress
+
+  // router.post('/new', (req,res) => {
+  //   if (req.params.id) {
+  //     getOrderById(req.params.id)
+  //     .then((order) => {
+  //       // if (order.status) is active call addNewOrder(order)
+  //     })
+  //   }
+
+  // })
 
   return router;
 }
