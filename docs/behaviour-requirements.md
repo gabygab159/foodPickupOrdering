@@ -64,28 +64,47 @@
 
   - list all orders
 
-### GET /:id (/orders/:id)
+### GET /:id (/orders/:id) -> don't need now.
 
   - list a specific order with id = :id
 
 ### GET /:user_id (/orders/:user_id
 
-  - list orders where orders.user_id = :user_id and status = active
+  - list orders and order items where:
+    - orders.user_id = user_id (req.params.id)
+    - and status = active(2) or status = open(1)
+    - order_items.order_id = orders.id
 
-### POST /new
+<!-- Get the order item
+### GET /:order_id (/order_items/:order_id) -> used to show the items inside the cart of a specific order
+
+  - list all items that belongs to orders.id = :order_id -->
+
+<!-- /orders/new -->
+### POST /new -> when the user click on the *add to cart button* from the menu
 
   - Is there an order for this user_id with status open?
-    - Is there an order with user_id and status open?
     - YES 
-      - Perform POST /order_items/new/:order_id/menu_item_id:
+      <!-- - Update the right side with the order information
+        - order number (order id)
+        - order item
+        - current total -->
+      - Perform POST /new/item/:order_id/menu_item_id: (/orders/new/item)
       - Update total to the orders table for that specific order
+      - add tax (stretch)
     - NO
-      - Add user_id, restaurant_id, date, status to the orders table
-        - POST /orders/new/:user_id/:restaurant_id
-          - date = new date Now()
-          - status = open
-      - Perform POST /order_items/:order_id/menu_item_id:
-        - quantity
+      - To create a new order we need:
+        - user_id                   -> orders table
+        - menu_items.restaurant_id  -> orders table
+        - menu_items.id             -> order_items table
+        - menu_item.price           -> order_items table
+        - menu_item.prep            -> it will be calculated on the fly to set the time for setTimeout callback function
+        - provide quantity          -> order_items -> set 1 by default
+        - provide date              -> orders table
+        - provide status            -> orders table -> open(1)
+      - When we have the data, what do we do?
+        - "Create the order" -> a function?
+        - Perform POST /order_items/:order_id/menu_item_id: <!-- res.render(/new/item/:order_id/menu_item_id:) -->
       - Define the status is very important (where status === active means checkout is done)
 ### POST /update/:order_id (/message/update/:order_id)
   - Notify user via SMS
@@ -96,6 +115,11 @@
     - (0) closed -> order has been fulfilled
     - (1) open -> cart has items but not checkout
     - (2) active -> cart has items and checked out
+
+### POST /items/delete/:item_id
+### POST /checkout
+
+
 
 
 ## MESSAGES
@@ -123,10 +147,10 @@
         - POST /messages/update/:order_id
 
 ## ORDER_ITEMS
-
+<!-- 
 ### GET /:order_id (/order_items/:order_id) -> used to show the items inside the cart of a specific order
 
-  - list all items that belongs to orders.id = :order_id
+  - list all items that belongs to orders.id = :order_id -->
 
 ### POST /delete/:order_id/:menu_item_id (stretch?)
 
