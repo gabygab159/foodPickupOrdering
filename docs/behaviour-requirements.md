@@ -93,9 +93,9 @@
   - change the order status to close
 
   - Options for order status
-    - open -> cart has items but not checkout
-    - active -> cart has items and checked out
-    - closed -> order has been fulfilled
+    - (0) closed -> order has been fulfilled
+    - (1) open -> cart has items but not checkout
+    - (2) active -> cart has items and checked out
 
 
 ## MESSAGES
