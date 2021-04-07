@@ -51,133 +51,44 @@ module.exports = (database) => {
     const { id, restaurant_id, price, prep_time } = req.body;
     const orderDate = new Date();
     const order = [ user_id, parseInt(restaurant_id), parseInt(price), orderDate, 1 ];
-
-    addNewOrder(order)
-      .then((neworder) => {
-
-          if (!neworder) {
-            console.log("Error while adding a new order");
-          } else {
-            addItemsToOrder(neworder.id, id, 1)
-              .then((item) => {
-                console.log("New item added to the order");
-                // return item.rows[0];
-              })
-          }
-
-          // addNewOrder(order).then(res => res).then(info => addOrderItems(info))
-        
-     
-
-        console.log("New Order after calling addNewOrder function: ", neworder)
-        res.redirect('/');
-      })
-      .catch((err) => {
-        console.log("ERROR: ", err.messages)
-      })
-
-    // res.send(req.body);
- 
-    // getOrderStatusByUserId(user_id)
-    //   .then((order) => {
-    //     if(!order) {
-    //       // user_id, restaurant_id, total, date, status
-    //       // user_id, restaurant_id, total, date, status
-    //       const values = [ user_id, restaurant_id*1, price*1, Date.now(), 1 ];
-    //       addNewOrder(values)
-    //         .then((newOrder) => {
-    //           console.log("after call addNewOrder: ", newOrder);
-    //           getOrderStatusByUserId(user_id)
-    //             .then((item) => {
-    //               res.redirect('/');
-    //             })
-    //         })
-    //       // res.redirect('/');
-    //     } else {
-    //       addItemsToOrder(order.id, id, 1)
-    //         .then((item) => {
-    //           res.redirect('/');
-    //         })
-    //     }
-    //     // addItemsToOrder(order.id, id, 1);
-    //     // res.redirect('/');
-    //   })
-
-    const item = [id, 1];
-
-    // addNewOrder(order, item, addItemsToOrder)
-    //   .then((res) => {
-    //     res.redirect('/');
-    //   })
-
-    // if (currentOrder) {
-    //   res.send(currentOrder);
-    // } else {
-    //   const message = currentOrder;
-    //   res.send(message);
-    // }
-    // getOrderByUserId(user_id)
-    //   .then((order) => {
-    //     const obj = { order, menus };
-    //     console.log("OBJ: ", obj)
-    //     res.send(obj);
-    //   })
-    //   .catch((err) => {
-    //     res.send(err.messages);
-    //   })
-
-  })
-
-  // work in progress
-
-  ///router.post('/new', (req, res) => {
-
-    //console.log("----> params in the user_id:", req.params);
-
-    // const user_id = req.params.user_id;
-    // const user_id = 1;
-
-    // if(user_id) {
-
-    //   getOrderByUserId(user_id)
-    //     .then((order) => {
-          
-    //       console.log("response from getOrdersById: ", order);
     
-    //       if (order) {
-    //         // add the current item to the current order to the current user with current status open (1)
-    //       } else {
-    //         // This is a new
-    //         const user_id = req.params.user_id;
-    //         const item_id = req.params.id;
-    //         const restaurant_id = req.params.restaurant_id;
-    //         const price = req.params.price;
-    //         const prep_time = req.params.prep_time;
-    //         const quantity = 1;
-    //         const date = Date.now();
-    //         const status = 1;
-      
-    //         //const newItem = { req.params } '
-    //         const newItem = [ user_id, 1, 100, '2021/04/06', 1 ];
-    //         addNewOrder(newItem)
-    //           .then((order) => {
-    //             addItemsToOrder(order.id, item_id, quantity)
-    //               .then((item) => {
-    //                 res.render('cart', order)
-    //               })
-    //               .catch((err) => {
-    //                 res.render('messages', err.messages);
-    //               })
-    //           })
-    //           .catch((err) => {
-    //             res.send(err.messages);
-    //           })
-    //       }
-    //     })
+    // addNewOrder(order).then(res => res).then(info => addOrderItems(info))
 
-    // } else { 
-    //   res.render('../partials/messages', "No user_id");
-    // }
+    // check if there is an order open for the current user
+    getOrderStatusByUserId(user_id)
+      .then((userOrder) => {
+        if (!userOrder) {
+          // Add a new order and the item if there is no open orders for the user
+          addNewOrder(order)
+          .then((neworder) => {
+    
+              if (!neworder) {
+                console.log("Error while adding a new order");
+              } else {
+                addItemsToOrder(neworder.id, id, 1)
+                  .then((item) => {
+                    console.log("New item added to the order");
+                    res.redirect('/');
+                  })
+              }
+  
+          })
+          .catch((err) => {
+            console.log("ERROR: ", err.messages)
+          })
+
+        } else {
+          // Add items to an existing order
+          addItemsToOrder(userOrder.id, id, 1)
+            .then((item) => {
+              res.redirect('/');
+            })
+        }
+      })
+
+
+    
+  })
 
   return router;
 
