@@ -36,6 +36,7 @@ const messagesRoute = require("./routes/messages-routes");
 const orderItemsRoute = require("./routes/order-items-routes");
 const restaurantRoute = require("./routes/restaurants-routes.js");
 const indexRoute = require("./routes/index-routes");
+const checkoutRoutes = require('./routes/checkout-routes');
 const { render } = require('ejs');
 
 // Mount all resource routes
@@ -47,6 +48,7 @@ app.use('/orders', ordersRoute(database));
 app.use('/messages', messagesRoute(database));
 app.use('/order-items', orderItemsRoute(database));
 app.use('/restaurants', restaurantRoute(database));
+app.use('/checkouts', checkoutRoutes(database));
 app.use('/', indexRoute(database));
 
 
