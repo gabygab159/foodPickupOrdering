@@ -50,6 +50,7 @@ module.exports = (database) => {
             // we check if there are orders for the user
             if(!userOrder) {
               console.log("USERORDER: ", userOrder);
+              res.render('pages/index', templateVars);
             } else {
               console.log("USERORDER EXIST: ", userOrder);
               // There is an order to the user with status 1 or 2
