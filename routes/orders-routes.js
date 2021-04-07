@@ -3,7 +3,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const { getOrders, getOrderById, getOrderByUserId, addItemsToOrder, addNewOrder }  = require('../lib/orders-queries');
+const { getOrders, getOrderById, getOrderStatusByUserId, addItemsToOrder, addNewOrder }  = require('../lib/orders-queries');
 
 // Router middlewares with no mount path (will be executed on every request to the router)
 router.use((req, res, next) => {
@@ -37,7 +37,6 @@ module.exports = (database) => {
   })
 
 
-  
   router.post('/new', (req, res) => {
 
     // Check if there is an order with open status (1) for the current user
@@ -48,13 +47,34 @@ module.exports = (database) => {
     //    - create a new order
     //    - add item to the new order
 
-    //const user_id = 1;
-    console.log("USERID ", user_id);
+    const user_id = 1;
+    const { id, restaurant_id, price, prep_time } = req.body;
+ 
+    getOrderStatusByUserId(user_id)
+      .then((order) => {
+        if(!order) {
+          res.send("No orders found")
+        } else {
+          res.send(order);
+        }
+        // addItemsToOrder(order.id, id, 1);
+        // res.redirect('/');
+      })
 
-    console.log("---->", req.body.menu_item.price);
+    const order = [user_id, restaurant_id, price, Date.now(), 1 ];
+    const item = [id, 1];
 
-    res.send(req.body.menu_item);
+    // addNewOrder(order, item, addItemsToOrder)
+    //   .then((res) => {
+    //     res.redirect('/');
+    //   })
 
+    // if (currentOrder) {
+    //   res.send(currentOrder);
+    // } else {
+    //   const message = currentOrder;
+    //   res.send(message);
+    // }
     // getOrderByUserId(user_id)
     //   .then((order) => {
     //     const obj = { order, menus };
@@ -65,9 +85,6 @@ module.exports = (database) => {
     //     res.send(err.messages);
     //   })
 
-    
-
-
   })
 
   // work in progress
@@ -77,7 +94,7 @@ module.exports = (database) => {
     //console.log("----> params in the user_id:", req.params);
 
     // const user_id = req.params.user_id;
-    const user_id = 1;
+    // const user_id = 1;
 
     // if(user_id) {
 
