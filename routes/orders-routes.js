@@ -37,9 +37,34 @@ module.exports = (database) => {
   })
 
 
+
+  router.post('/new', (req, res) => {
+
+    // Check if there is an order with open status (1) for the current user
+    // YES  
+    //    - add new item to the order
+    //    - update the total on the orders table
+    // NO
+    //    - create a new order
+    //    - add item to the new order
+
+    const user_id = 1;
+
+    getOrderByUserId(user_id)
+      .then((order) => {
+        res.send(order);
+      })
+      .catch((err) => {
+        res.send(err.messages);
+      })
+
+
+
+  })
+
   // work in progress
 
-  // router.post('/new', (req, res) => {
+  ///router.post('/new', (req, res) => {
 
     //console.log("----> params in the user_id:", req.params);
 
