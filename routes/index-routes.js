@@ -52,12 +52,12 @@ module.exports = (database) => {
               getOrderItems(user_id)
                 .then((orderItems) => {
 
-                  tOrderItems = orderItems.filter(e => e.status === 1);
-                  console.log(">>>>>>>> tOderItems: ", tOrderItems);
-
-                  console.log("ORDER ITEMS ->: ", orderItems);
+                  // if order status = 1 -> show items in the cart
+                  // if order status = 2 -> show order info in the message, and messages
+                  
+                  // console.log("ORDER ITEMS ->: ", orderItems);
                   templateVars.orderItems = orderItems.filter(e => e.status === 1);
-                  // templateVars.orderItems = tOrderItems;
+
                   console.log("TemplateVars: ", templateVars);
 
                   res.render('pages/index', templateVars);
