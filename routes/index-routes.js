@@ -11,6 +11,7 @@ const { getMenuItems }  = require('../lib/menus-queries');
 const { getRestaurants } = require('../lib/restaurants-queries');
 const { getMessages, getMessagesById, getMessagesByOrderId } = require('../lib/messages-queries');
 const { getUsersById } = require('../lib/users-queries');
+const { getOrderStatusByUserId, getOrderItems } = require('../lib/orders-queries');
 const { render } = require('ejs');
 
 // Router middlewares with no mount path (will be executed on every request to the router)
@@ -21,6 +22,11 @@ const { render } = require('ejs');
 
 module.exports = (database) => {
   // GET /
+  //
+  // Get user information
+  // Get restaurant information (stretch)
+  // Get order information
+  // Get messages
   router.get('/', (req, res) => {
     // Getting user information and rendering nav page with user object
     // getUsersById(1)
@@ -37,12 +43,18 @@ module.exports = (database) => {
     getMenuItems()
       .then((menus) => {
         const templateVars = { menus, user_id };
+        
         res.render('pages/index', templateVars);
       })
       .catch((err) => {
         res.render('partials/messages', err.messages);
       })
+
+    // Get order items
+    getOrderItems()
   })
+
+
 
   return router;
 }
