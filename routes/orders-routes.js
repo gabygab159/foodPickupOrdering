@@ -48,9 +48,10 @@ module.exports = (database) => {
     //    - create a new order
     //    - add item to the new order
 
-    const user_id = 1;
+    //const user_id = 1;
+    console.log("USERID ", user_id);
 
-    console.log("---->", req.body.menu_item);
+    console.log("---->", req.body.menu_item.price);
 
     res.send(req.body.menu_item);
 
