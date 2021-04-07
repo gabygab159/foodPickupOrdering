@@ -19,6 +19,7 @@
           <!-- if cart empty -->
           <p class="empty-cart">Your cart is currently empty. Please add items.</p>
           <% } else { %>
+          <% let subtotal = 0; %>
             <p class="cart-title">Your Cart</p>
           <% for (let item in orderItems) { %>
 
@@ -27,13 +28,20 @@
               <span class="cart-item-price"><%= (orderItems[item].price*.01).toFixed(2) %></span>
             </li>
 
+            <% subtotal += orderItems[item].price; %>
+
+
          <% } %>
+
+         <% let tax = subtotal * 0.13; %>
+         <% let total = subtotal + tax; %>
+
 
          <div class="cart-footer">
            <div class="cart-total">
-             <p>Subtotal</p>
-             <p>Tax</p>
-             <p>Total</p>
+             <p>Subtotal: <%= (subtotal*.01).toFixed(2) %></p>
+             <p>Tax: <%= (tax*.01).toFixed(2) %></p>
+             <p>Total: <%= (total*.01).toFixed(2) %></p>
            </div>
            <button class="checkout">Checkout</button>
          </div>
