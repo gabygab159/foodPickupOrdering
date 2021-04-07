@@ -14,7 +14,8 @@
       <div class="menu-description"><%= menus[item].description%></div>
       <dish class="menu-price">$<%= (menus[item].price *.01).toFixed(2) %></dish>
       <div class="add-to-cart">
-        <form action="/order/new" method="POST">
+        <form action="/orders/new" method="POST">
+          <input type="hidden" id="menu_item_id" name="menu_item_id" value=<%= menus[item].id %>> 
           <button type="submit">Add to cart</button>
         </form>
       </div>

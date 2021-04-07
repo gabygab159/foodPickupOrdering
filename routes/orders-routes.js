@@ -38,7 +38,7 @@ module.exports = (database) => {
 
 
   
-  router.post('/new', (req, res) => {
+  router.post('/new/:id', (req, res) => {
 
     // Check if there is an order with open status (1) for the current user
     // YES  
@@ -50,9 +50,13 @@ module.exports = (database) => {
 
     const user_id = 1;
 
+    console.log("---->", req.params.id);
+
     getOrderByUserId(user_id)
       .then((order) => {
-        res.send(order);
+        const obj = { order, menus };
+        console.log("OBJ: ", obj)
+        res.send(obj);
       })
       .catch((err) => {
         res.send(err.messages);
