@@ -12,14 +12,14 @@
        <p class="restaurant-address">1234 Soup Dr. Toronto, ON M6W9R7</p>
      </div>
      <div class="cart-body">
-       <!-- if cart empty -->
        
        <!-- if items are added -->
-       <!-- <p class="cart-title">Your Cart</p> -->
        <ul class="cart-item-container">
-        <% if(!orderItems) { %>
+         <% if(!orderItems) { %>
+          <!-- if cart empty -->
           <p class="empty-cart">Your cart is currently empty. Please add items.</p>
-        <% } else { %>
+          <% } else { %>
+            <p class="cart-title">Your Cart</p>
           <% for (let item in orderItems) { %>
 
             <li> <span class="cart-item-quantity"><%= orderItems[item].quantity %></span>
@@ -29,9 +29,6 @@
 
          <% } %>
 
-
-        <% } %>
-
          <div class="cart-footer">
            <div class="cart-total">
              <p>Subtotal</p>
@@ -40,7 +37,11 @@
            </div>
            <button class="checkout">Checkout</button>
          </div>
+         
+         <% } %>
         </div>
+         
+         
 
 
 

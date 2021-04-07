@@ -49,7 +49,9 @@ module.exports = (database) => {
             // if we get the menu items
             // we check if there are orders for the user
             if(!userOrder) {
-              console.log("USERORDER: ", userOrder);
+              console.log("USERORDER (no orders for the user): ", userOrder);
+              //orderItems = [];
+              templateVars.orderItems = userOrder;
               res.render('pages/index', templateVars);
             } else {
               console.log("USERORDER EXIST: ", userOrder);
