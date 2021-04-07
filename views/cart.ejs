@@ -1,3 +1,8 @@
+ 
+
+
+ 
+ 
  <!-- Cart on right -->
  <div class="right-container">
    <section class="cart-container">
@@ -11,14 +16,23 @@
        <!-- if items are added -->
        <!-- <p class="cart-title">Your Cart</p> -->
        <ul class="cart-item-container">
-         <li> <span class="cart-item-quantity">2</span>
-           <span class="cart-item">Tomato Soup</span>
-           <span class="cart-item-price">$11</span>
-         </li>
+        <% if(orderItems) { %>
+
+          <% for (let item in orderItems) { %>
+
+          <li> <span class="cart-item-quantity"><%= orderItems[item].quantity %></span>
+            <span class="cart-item"><%= orderItems[item].name %></span>
+            <span class="cart-item-price"><%= orderItems[item].price %></span>
+          </li>
+
+         <% } %>
+        <% } %>
+         <!--
          <li> <span class="cart-item-quantity">1</span>
            <span class="cart-item">French Onion Soup</span>
            <span class="cart-item-price">$11</span>
          </li>
+        -->
          <div class="cart-footer">
            <div class="cart-total">
              <p>Subtotal</p>

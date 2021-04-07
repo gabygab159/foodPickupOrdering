@@ -51,17 +51,20 @@ module.exports = (database) => {
             if(!userOrder) {
               console.log("USERORDER: ", userOrder);
             } else {
-              console.log("USERORDER: ", userOrder);
+              console.log("USERORDER EXIST: ", userOrder);
               // There is an order to the user with status 1 or 2
               // if status = 1, get order items
               getOrderItems(user_id)
                 .then((orderItems) => {
-                  console.log("ORDER ITEMS: ", orderItems);
-                  render('pages/index', templateVars);
-                  render('partials/cart', orderItems);
+                  console.log("ORDER ITEMS ->: ", orderItems);
+                  templateVars.orderItems = orderItems;
+                  console.log("TemplateVars: ", templateVars);
+
+                  res.render('pages/index', templateVars);
+                  //res.render('partials/cart', orderItems);
                 })
 
-              res.render('pages/index', templateVars);
+              //res.render('pages/index', templateVars);
               
             }
           })
