@@ -11,11 +11,11 @@
     </div>
     <div class="menu-contents">
       <h1 class="menu-name"><%= menus[item].name %></h1>
-      <div class="menu-description"><%= menus[item].description%></div>
+      <div class="menu-description"><%= menus[item].description %></div>
       <dish class="menu-price">$<%= (menus[item].price *.01).toFixed(2) %></dish>
       <div class="add-to-cart">
         <form action="/orders/new" method="POST">
-          <input type="hidden" id="menu_item_id" name="menu_item_id" value=<%= menus[item].id %>> 
+          <input type="hidden" id="menu_item" name="menu_item" value=<%= JSON.stringify(menus[item]) %>> 
           <button type="submit">Add to cart</button>
         </form>
       </div>
