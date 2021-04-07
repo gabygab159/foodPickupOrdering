@@ -50,8 +50,33 @@ module.exports = (database) => {
         res.render('partials/messages', err.messages);
       })
 
-    // Get order items
-    getOrderItems()
+    // Find if there is order with status 1 or 2 for the user
+    // If no orders with status 1 or 2
+    //    - Render cart as Cart is empty
+    //    - Render messages as "No new messages"
+    // For orders with status 1 render the cart with order items
+
+    // For orders with status 2 render the message box with the messages related to the order
+    getOrderStatusByUserId(user_id)
+      .then((userOrder) => {
+
+        if(!userOrder) {
+          res.render('pages/index');
+        }
+
+
+
+      })
+      .catch((err) => {
+        console.log("Error: ", err.messages);
+      })
+
+
+
+
+
+
+
   })
 
 
