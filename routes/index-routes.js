@@ -51,8 +51,13 @@ module.exports = (database) => {
               // if status = 1, get order items
               getOrderItems(user_id)
                 .then((orderItems) => {
+
+                  tOrderItems = orderItems.filter(e => e.status === 1);
+                  console.log(">>>>>>>> tOderItems: ", tOrderItems);
+
                   console.log("ORDER ITEMS ->: ", orderItems);
-                  templateVars.orderItems = orderItems;
+                  templateVars.orderItems = orderItems.filter(e => e.status === 1);
+                  // templateVars.orderItems = tOrderItems;
                   console.log("TemplateVars: ", templateVars);
 
                   res.render('pages/index', templateVars);
