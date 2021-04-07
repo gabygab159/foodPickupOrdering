@@ -52,16 +52,21 @@ module.exports = (database) => {
               getOrderItems(user_id)
                 .then((orderItems) => {
 
+                  let ordersOpen = false;
                   // if order status = 1 -> show items in the cart
                   // if order status = 2 -> show order info in the message, and messages
-                  
+
                   // console.log("ORDER ITEMS ->: ", orderItems);
                   templateVars.orderItems = orderItems.filter(e => e.status === 1);
+                  templateVars.ordersOpen = orderItems.filter(o => o.status === 2 || false);
 
-                  console.log("TemplateVars: ", templateVars);
+                  console.log("ORDERS OPEN: ", ordersOpen);
+
+                  console.log("TemplateVars BEFORE RENDER index: ", templateVars);
 
                   res.render('pages/index', templateVars);
                 })
+
             }
           })
           .catch((err) => {
