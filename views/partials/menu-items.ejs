@@ -14,7 +14,9 @@
       <div class="menu-description"><%= menus[item].description%></div>
       <dish class="menu-price">$<%= (menus[item].price *.01).toFixed(2) %></dish>
       <div class="add-to-cart">
-        <button>Add to cart</button>
+        <form action="/order/new" method="POST">
+          <button type="submit">Add to cart</button>
+        </form>
       </div>
     </div>
   </section>
