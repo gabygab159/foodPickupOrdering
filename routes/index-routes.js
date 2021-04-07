@@ -28,14 +28,6 @@ module.exports = (database) => {
   // Get order information
   // Get messages
   router.get('/', (req, res) => {
-    // Getting user information and rendering nav page with user object
-    // getUsersById(1)
-    //   .then((user) => {
-    //     res.render('pages/nav', user);
-    //   })
-    //   .catch((err) => {
-    //     res.render('partials/messages', err.messages);
-    //   })
   
     const user_id = 1;
 
@@ -64,11 +56,7 @@ module.exports = (database) => {
                   console.log("TemplateVars: ", templateVars);
 
                   res.render('pages/index', templateVars);
-                  //res.render('partials/cart', orderItems);
                 })
-
-              //res.render('pages/index', templateVars);
-              
             }
           })
           .catch((err) => {
