@@ -44,7 +44,34 @@ module.exports = (database) => {
       .then((menus) => {
         const templateVars = { menus, user_id };
         
-        res.render('pages/index', templateVars);
+        getOrderStatusByUserId(user_id)
+          .then((userOrder) => {
+            // if we get the menu items
+            // we check if there are orders for the user
+            if(!userOrder) {
+              console.log("USERORDER: ", userOrder);
+            } else {
+              console.log("USERORDER: ", userOrder);
+              // There is an order to the user with status 1 or 2
+              // if status = 1, get order items
+              getOrderItems(user_id)
+                .then((orderItems) => {
+                  console.log("ORDER ITEMS: ", orderItems);
+                  render('pages/index', templateVars);
+                  render('partials/cart', orderItems);
+                })
+
+              res.render('pages/index', templateVars);
+              
+            }
+          })
+          .catch((err) => {
+            console.log("Error: ", err.messages);
+          })
+
+
+
+        //res.render('pages/index', templateVars);
       })
       .catch((err) => {
         res.render('partials/messages', err.messages);
@@ -57,19 +84,7 @@ module.exports = (database) => {
     // For orders with status 1 render the cart with order items
 
     // For orders with status 2 render the message box with the messages related to the order
-    getOrderStatusByUserId(user_id)
-      .then((userOrder) => {
-
-        if(!userOrder) {
-          res.render('pages/index');
-        }
-
-
-
-      })
-      .catch((err) => {
-        console.log("Error: ", err.messages);
-      })
+ 
 
 
 
