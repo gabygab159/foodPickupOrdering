@@ -49,10 +49,26 @@ module.exports = (database) => {
 
     const user_id = 1;
     const { id, restaurant_id, price, prep_time } = req.body;
-    const order = [ user_id, restaurant_id*1, price*1, '2021/04/06', 1 ];
+    const orderDate = new Date();
+    const order = [ user_id, parseInt(restaurant_id), parseInt(price), orderDate, 1 ];
 
     addNewOrder(order)
       .then((neworder) => {
+
+          if (!neworder) {
+            console.log("Error while adding a new order");
+          } else {
+            addItemsToOrder(neworder.id, id, 1)
+              .then((item) => {
+                console.log("New item added to the order");
+                // return item.rows[0];
+              })
+          }
+
+          // addNewOrder(order).then(res => res).then(info => addOrderItems(info))
+        
+     
+
         console.log("New Order after calling addNewOrder function: ", neworder)
         res.redirect('/');
       })
