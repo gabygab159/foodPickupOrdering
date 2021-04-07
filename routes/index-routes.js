@@ -31,10 +31,12 @@ module.exports = (database) => {
     //     res.render('partials/messages', err.messages);
     //   })
   
+    const user_id = 1;
+
     // Get all dishes from the menu and render menu_items page with all objects from the menu_items table
     getMenuItems()
       .then((menus) => {
-        const templateVars = { menus };
+        const templateVars = { menus, user_id };
         res.render('pages/index', templateVars);
       })
       .catch((err) => {
