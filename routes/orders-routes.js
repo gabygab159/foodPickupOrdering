@@ -49,35 +49,44 @@ module.exports = (database) => {
 
     const user_id = 1;
     const { id, restaurant_id, price, prep_time } = req.body;
+    const order = [ user_id, restaurant_id*1, price*1, '2021/04/06', 1 ];
+
+    addNewOrder(order)
+      .then((neworder) => {
+        console.log("New Order after calling addNewOrder function: ", neworder)
+        res.redirect('/');
+      })
+      .catch((err) => {
+        console.log("ERROR: ", err.messages)
+      })
 
     // res.send(req.body);
  
-    getOrderStatusByUserId(user_id)
-      .then((order) => {
-        if(!order) {
-          // user_id, restaurant_id, total, date, status
-          // user_id, restaurant_id, total, date, status
-          const values = [ user_id, restaurant_id*1, price*1, Date.now(), 1 ];
-          addNewOrder(values)
-            .then((newOrder) => {
-              console.log("after call addNewOrder: ", newOrder);
-              getOrderStatusByUserId(user_id)
-                .then((item) => {
-                  res.redirect('/');
-                })
-            })
-          // res.redirect('/');
-        } else {
-          addItemsToOrder(order.id, id, 1)
-            .then((item) => {
-              res.redirect('/');
-            })
-        }
-        // addItemsToOrder(order.id, id, 1);
-        // res.redirect('/');
-      })
+    // getOrderStatusByUserId(user_id)
+    //   .then((order) => {
+    //     if(!order) {
+    //       // user_id, restaurant_id, total, date, status
+    //       // user_id, restaurant_id, total, date, status
+    //       const values = [ user_id, restaurant_id*1, price*1, Date.now(), 1 ];
+    //       addNewOrder(values)
+    //         .then((newOrder) => {
+    //           console.log("after call addNewOrder: ", newOrder);
+    //           getOrderStatusByUserId(user_id)
+    //             .then((item) => {
+    //               res.redirect('/');
+    //             })
+    //         })
+    //       // res.redirect('/');
+    //     } else {
+    //       addItemsToOrder(order.id, id, 1)
+    //         .then((item) => {
+    //           res.redirect('/');
+    //         })
+    //     }
+    //     // addItemsToOrder(order.id, id, 1);
+    //     // res.redirect('/');
+    //   })
 
-    const order = [user_id, restaurant_id, price, Date.now(), 1 ];
     const item = [id, 1];
 
     // addNewOrder(order, item, addItemsToOrder)
