@@ -49,13 +49,29 @@ module.exports = (database) => {
 
     const user_id = 1;
     const { id, restaurant_id, price, prep_time } = req.body;
+
+    // res.send(req.body);
  
     getOrderStatusByUserId(user_id)
       .then((order) => {
         if(!order) {
-          res.send("No orders found")
+          // user_id, restaurant_id, total, date, status
+          // user_id, restaurant_id, total, date, status
+          const values = [ user_id, restaurant_id*1, price*1, Date.now(), 1 ];
+          addNewOrder(values)
+            .then((newOrder) => {
+              console.log("after call addNewOrder: ", newOrder);
+              getOrderStatusByUserId(user_id)
+                .then((item) => {
+                  res.redirect('/');
+                })
+            })
+          // res.redirect('/');
         } else {
-          res.send(order);
+          addItemsToOrder(order.id, id, 1)
+            .then((item) => {
+              res.redirect('/');
+            })
         }
         // addItemsToOrder(order.id, id, 1);
         // res.redirect('/');
