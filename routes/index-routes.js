@@ -23,13 +23,13 @@ module.exports = (database) => {
   // GET /
   router.get('/', (req, res) => {
     // Getting user information and rendering nav page with user object
-    getUsersById(1)
-      .then((user) => {
-        res.render('pages/nav', user);
-      })
-      .catch((err) => {
-        res.render('partials/messages', err.messages);
-      })
+    // getUsersById(1)
+    //   .then((user) => {
+    //     res.render('pages/nav', user);
+    //   })
+    //   .catch((err) => {
+    //     res.render('partials/messages', err.messages);
+    //   })
   
     // Get all dishes from the menu and render menu_items page with all objects from the menu_items table
     getMenuItems()

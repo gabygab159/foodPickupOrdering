@@ -37,7 +37,7 @@ module.exports = (database) => {
   })
 
 
-
+  
   router.post('/new', (req, res) => {
 
     // Check if there is an order with open status (1) for the current user
