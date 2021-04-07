@@ -60,8 +60,7 @@ module.exports = (database) => {
         if (!userOrder) {
           // Add a new order and the item if there is no open orders for the user
           addNewOrder(order)
-          .then((neworder) => {
-    
+          .then((neworder) => {  
               if (!neworder) {
                 console.log("Error while adding a new order");
               } else {
@@ -70,8 +69,11 @@ module.exports = (database) => {
                     console.log("New item added to the order");
                     res.redirect('/');
                   })
+                  .catch((err) => {
+                    console.log("Error addItemsToOrder: ", err.messages);
+                    res.render('partials/message', err.messages);
+                  })
               }
-  
           })
           .catch((err) => {
             console.log("ERROR: ", err.messages)
@@ -82,6 +84,9 @@ module.exports = (database) => {
           addItemsToOrder(userOrder.id, id, 1)
             .then((item) => {
               res.redirect('/');
+            })
+            .catch((err) => {
+              res.render('partials/message', err.messages);
             })
         }
       })
