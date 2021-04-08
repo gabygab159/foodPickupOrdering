@@ -48,7 +48,7 @@ app.use('/orders', ordersRoute(database));
 app.use('/messages', messagesRoute(database));
 app.use('/order-items', orderItemsRoute(database));
 app.use('/restaurants', restaurantRoute(database));
-app.use('/checkout', checkoutRoutes(database));
+app.use('/checkouts', checkoutRoutes(database));
 app.use('/', indexRoute(database));
 
 

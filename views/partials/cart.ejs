@@ -5,7 +5,10 @@
 <div class="cart-body">
   <!-- if items are added -->
   <ul class="cart-item-container">
-    <% if(!orderOpen) { %>
+
+    
+
+    <% if(!orderOpen || orderOpen.length === 0 ) { %>
       <!-- if cart empty -->
       <p class="empty-cart">Your cart is currently empty. Please add items.</p>
       <% } else { %>
@@ -26,7 +29,7 @@
 
 <% let tax = subtotal * 0.13; %>
 <% let total = subtotal + tax; %>
-<% let checkout = { }
+<% let checkout = { } %>
 
 <div class="cart-footer">
   <div class="cart-total">
@@ -34,9 +37,9 @@
     <p>Tax: <%= (tax*.01).toFixed(2) %></p>
     <p>Total: <%= (total*.01).toFixed(2) %></p>
   </div>
-  <form action="/checkout" method="POST">
-    <input type="hidden" id="user_id" name="user_id" value=<%= user_id %>>
-    <button class="checkout">Checkout</button>
+  <form action="/checkouts" method="POST">
+    <input type="hidden" id="user_id" name="user_id" value=<%= user_id %> >
+    <button type="submit" class="checkout">Checkout</button>
   </form>
 </div>
 

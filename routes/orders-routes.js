@@ -55,10 +55,21 @@ module.exports = (database) => {
     // addNewOrder(order).then(res => res).then(info => addOrderItems(info))
 
     // check if there is an order open for the current user
+
+
+    console.log("Data from menu ejs: ", order);
+
+    // This call must pass the status = 1 since we are looking for 
+    //  - users with no orders (status = 0 or status =2 )
+    //  - users with open orders (status 1)
     getOrderStatusByUserId(user_id)
       .then((userOrder) => {
 
-        console.log("DEBUG ADD ITEMS TO ORDER - userOrder: ", userOrder);
+        console.log(">>>>>DEBUG ADD ITEMS TO ORDER - userOrder: ", userOrder);
+
+        for (let i in userOrder) {
+          console.log(">>> order_id, order_status: ", userOrder[i].id, userOrder[i].status);
+        }
 
         if (!userOrder) {
           // Add a new order and the item if there is no open orders for the user
