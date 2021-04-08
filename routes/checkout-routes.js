@@ -24,24 +24,30 @@ module.exports = (database) => {
     //   prep_time: "12"
     // }
 
-  // GET /checkouts/
+    const order_id = req.body.order_id;
+    const prep_time = req.body.prep_time;
 
-    updateOrderStatus(9, 2)
+    updateOrderStatus(order_id, 2)
       .then((status) => {
         //We need to send the restaurant with order id
-        sendSMS("+15149635280", "restaurant order with id")
-          .then(res => {
+        sendSMS("+13439964241", "1st restaurant order with id")
+          .then((restaurantMsg) => {
             //send to client initial sms of order # and time
-            sendSMS("+14372421211", "client order message")
-              .then(res => {
+            res.render('pages/index');
+            sendSMS("+13439964241", "2nd client order message")
+              .then((clientMsg) => {
                 //set timeout. send client order ready for pickup
-                console.log('message sent to client');
+                console.log('3rd message sent to client');
+                res.render('pages/index');
                 setTimeout(() => {
                   // inject the client phone number and the time
-                  sendSMS("+14372421211", "Order is ready for pickup!");
-                  //  inject order number
-                  updateOrderStatus(1, 0);
-                }, 10000);
+                  sendSMS("+13439964241", "4th Order is ready for pickup!")
+                    .then((ready) => {
+                      //  inject order number
+                      updateOrderStatus(order_id, 0);
+                    })
+                }, 5000);
+
               })
               .catch(e => console.error('did not send to client', e));
           })
