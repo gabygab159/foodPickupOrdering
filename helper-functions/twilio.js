@@ -14,6 +14,7 @@ const sendSMS = (phone, message) => {
     from: '+18142088997' // From a valid Twilio number
   })
     .then((message) => {
+      console.log("messge -->", message)
       return message.sid;
     })
     .catch((err) => {
