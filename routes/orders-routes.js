@@ -40,7 +40,7 @@ module.exports = (database) => {
   router.post('/new', (req, res) => {
 
     // Check if there is an order with open status (1) for the current user
-    // YES  
+    // YES
     //    - add new item to the order
     //    - update the total on the orders table
     // NO
@@ -51,7 +51,7 @@ module.exports = (database) => {
     const { id, restaurant_id, price, prep_time } = req.body;
     const orderDate = new Date();
     const order = [ user_id, parseInt(restaurant_id), parseInt(price), orderDate, 1 ];
-    
+
     // addNewOrder(order).then(res => res).then(info => addOrderItems(info))
 
     // check if there is an order open for the current user
@@ -59,7 +59,7 @@ module.exports = (database) => {
 
     console.log("Data from menu ejs: ", order);
 
-    // This call must pass the status = 1 since we are looking for 
+    // This call must pass the status = 1 since we are looking for
     //  - users with no orders (status = 0 or status =2 )
     //  - users with open orders (status 1)
     getOrderStatusByUserId(user_id)
@@ -74,7 +74,7 @@ module.exports = (database) => {
         if (!userOrder) {
           // Add a new order and the item if there is no open orders for the user
           addNewOrder(order)
-          .then((neworder) => {  
+          .then((neworder) => {
               if (!neworder) {
                 console.log("Error while adding a new order");
               } else {
@@ -106,7 +106,7 @@ module.exports = (database) => {
       })
 
 
-    
+
   })
 
   return router;

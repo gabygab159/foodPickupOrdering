@@ -24,34 +24,29 @@ module.exports = (database) => {
     //   prep_time: "12"
     // }
 
-    const order_id = req.body.order_id;
-    const prep_time = req.body.prep_time;
+  // GET /checkouts/
 
-    updateOrderStatus(order_id, 2)
+    updateOrderStatus(4 , 1)
       .then((status) => {
         //We need to send the restaurant with order id
-        sendSMS("+13439964241", "1st restaurant order with id")
-          .then((restaurantMsg) => {
+        sendSMS("+15149635280", "# 1 restaurant order with id")
+          .then(res => {
             //send to client initial sms of order # and time
-            res.render('pages/index');
-            sendSMS("+13439964241", "2nd client order message")
-              .then((clientMsg) => {
+            sendSMS("+15149635280", "# 2 client order message")
+              .then(res => {
                 //set timeout. send client order ready for pickup
-                console.log('3rd message sent to client');
-                res.render('pages/index');
+                console.log('message sent to client');
                 setTimeout(() => {
                   // inject the client phone number and the time
-                  sendSMS("+13439964241", "4th Order is ready for pickup!")
-                    .then((ready) => {
-                      //  inject order number
-                      updateOrderStatus(order_id, 0);
-                    })
-                }, 5000);
-
+                  sendSMS("+15149635280", "# 3 Order is ready for pickup!");
+                  //  inject order number
+                  updateOrderStatus(4, 0);
+                }, 2000);
               })
               .catch(e => console.error('did not send to client', e));
           })
           .catch(e => console.error("twilio error", e));
+        res.redirect('/')
         res.send(status);
       })
       .catch((err) => {
@@ -64,3 +59,5 @@ module.exports = (database) => {
 
   return router;
 };
+
+
