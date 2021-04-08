@@ -3,6 +3,8 @@ const router = express.Router();
 
 const { updateOrderStatus } = require('../lib/checkout-queries');
 const { sendSMS } = require('../helper-functions/send-sms');
+const { Template } = require('ejs');
+
 
 router.use((req, res, next) => {
   console.log('router.checkout has been called');
