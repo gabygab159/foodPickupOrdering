@@ -36,7 +36,6 @@ module.exports = (database) => {
           })
           .catch(e => console.error("twilio error", e));
         res.redirect('/');
-        res.send(status);
       })
       .catch((err) => {
         console.error(err);
