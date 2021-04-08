@@ -8,12 +8,6 @@ const express = require('express');
 const router  = express.Router();
 const { getUsers, getUsersById, getUsersByEmail }  = require('../lib/users-queries');
 
-// Router middlewares with no mount path (will be executed on every request to the router)
-router.use((req, res, next) => {
-  console.log('router.user has been called');
-  next();
-});
-
 module.exports = (database) => {
   // GET /users/
   router.get('/', (req, res) => {
@@ -38,9 +32,7 @@ module.exports = (database) => {
 
   // GET /users/email/:email
   router.get('/email/:email', (req, res) => {
-    // const req.params.email = 'alice@bla.com';
-    const email = 'alice@bla.com';
-    if (email) {
+  if (email) {
       getUsersByEmail(email)
         .then((users) => {
           res.send(users);
