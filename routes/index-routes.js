@@ -18,12 +18,7 @@ const { render } = require('ejs');
 
 module.exports = (database) => {
   router.get('/', (req, res) => {
-    // Find if there is order with status 1 or 2 for the user
-    // If no orders with status 1 or 2
-    //    - Render cart as Cart is empty
-    //    - Render messages as "No new messages"
-    // For orders with status 1 render the cart with order items
-    // For orders with status 2 render the message box with the messages related to the order
+
 
     const user_id = 1;
     const restaurant_id = 1;
@@ -33,6 +28,7 @@ module.exports = (database) => {
       .then((menus) => {
         const templateVars = { menus, user_id };
 
+
         getAddressesById(restaurant_id)
           .then((address) => {
             templateVars.addresses = address;
@@ -40,6 +36,7 @@ module.exports = (database) => {
             getRestaurantById(restaurant_id)
               .then((restaurant) => {
                 templateVars.restaurants = restaurant;
+
 
                 getUsersById(user_id)
                   .then((users) => {
@@ -83,6 +80,7 @@ module.exports = (database) => {
               .catch((err) => {
                 console.error("Error (getRestaurantById): ", err.messages);
               });
+
           })
           .catch((err) => {
             console.error("Error (getAddressesById): ", err.messages);
@@ -92,7 +90,7 @@ module.exports = (database) => {
         res.render('partials/messages', err.messages);
       });
 
-  });
+
   return router;
 };
 

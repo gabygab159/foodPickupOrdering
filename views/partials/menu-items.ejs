@@ -1,28 +1,23 @@
-
-
 <% if(menus) { %>
-
-  <% for (let item in menus) { %>
-
-  <section class="menu-items">
-    <div>
-      <img class="menu-photo" src="<%= menus[item].image_url %>" alt="Picture of food">
+<% for (let item in menus) { %>
+<section class="menu-items">
+  <div>
+    <img class="menu-photo" src="<%= menus[item].image_url %>" alt="Picture of food">
+  </div>
+  <div class="menu-contents">
+    <h1 class="menu-name"><%= menus[item].name %></h1>
+    <div class="menu-description"><%= menus[item].description %></div>
+    <dish class="menu-price">$<%= (menus[item].price *.01).toFixed(2) %></dish>
+    <div class="add-to-cart">
+      <form action="/orders/new" method="POST">
+        <input type="hidden" id="id" name="id" value=<%= menus[item].id %>>
+        <input type="hidden" id="restaurant_id" name="restaurant_id" value=<%= menus[item].restaurant_id %>>
+        <input type="hidden" id="price" name="price" value=<%= menus[item].price %>>
+        <input type="hidden" id="prep_time" name="prep_time" value=<%= menus[item].prep_time %>>
+        <button type="submit">Add to cart</button>
+      </form>
     </div>
-    <div class="menu-contents">
-      <h1 class="menu-name"><%= menus[item].name %></h1>
-      <div class="menu-description"><%= menus[item].description %></div>
-      <dish class="menu-price">$<%= (menus[item].price *.01).toFixed(2) %></dish>
-      <div class="add-to-cart">
-        <form action="/orders/new" method="POST">
-          <input type="hidden" id="id" name="id" value=<%= menus[item].id %>>
-          <input type="hidden" id="restaurant_id" name="restaurant_id" value=<%= menus[item].restaurant_id %>>
-          <input type="hidden" id="price" name="price" value=<%= menus[item].price %>>
-          <input type="hidden" id="prep_time" name="prep_time" value=<%= menus[item].prep_time %>>
-          <button type="submit">Add to cart</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <% } %>
+  </div>
+</section>
+<% } %>
 <% } %>

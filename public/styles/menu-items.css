@@ -12,12 +12,10 @@
   margin: 2em 2em 0em 2em;
   height: 12em;
   display: flex;
-  /* justify-content: space-between; */
   background: rgb(246, 246, 170);
 }
 
 .menu-contents {
-/* padding-right: 10em; */
 display: flex;
 flex-direction: column;
 margin-left: 3em;
