@@ -27,15 +27,15 @@ module.exports = (database) => {
     updateOrderStatus(9, 2)
       .then((status) => {
         //We need to send the restaurant with order id
-        sendSMS("15149635280", "restaurant order with id")
+        sendSMS("+15149635280", "restaurant order with id")
           .then(res => {
             //send to client initial sms of order # and time
-            sendSMS("14372421211", "client order message")
+            sendSMS("+14372421211", "client order message")
               .then(res=> {
                 //set timeout. send client order ready for pickup
                 console.log('message sent to client')
                 // inject the client phone number and the time
-                setTimeout(sendSMS("14372421211", "Order is ready for pickup!"),10000)
+                setTimeout(sendSMS("+14372421211", "Order is ready for pickup!"),10000)
               })
               .catch(e=>console.error('did not send to client', e))
             })
