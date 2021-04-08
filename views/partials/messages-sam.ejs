@@ -4,11 +4,11 @@
         <div class="message-head"></div>
         <div class="message-body"></div>
 
-
+        <% if (!ordersOpen) { %>
         <span class="order-id">You don't have open orders</span>
-
-        <span>Thank you!</span>
+        <% } else { %>
+        <span><%= ordersOpen %> Thank you!</span>
         <span class="order-id">Your Order id is...INSERT HERE</span>
         <span class="time">Ready in...</span>
         <div class="message-footer"></div>
-
+        } %>

@@ -11,6 +11,7 @@ const { getMenuItems }  = require('../lib/menus-queries');
 const { getRestaurants } = require('../lib/restaurants-queries');
 const { getMessages, getMessagesById, getMessagesByOrderId } = require('../lib/messages-queries');
 const { getUsersById } = require('../lib/users-queries');
+const { getOrderStatusByUserId, getOrderItems } = require('../lib/orders-queries');
 const { render } = require('ejs');
 
 // Router middlewares with no mount path (will be executed on every request to the router)
@@ -21,15 +22,12 @@ const { render } = require('ejs');
 
 module.exports = (database) => {
   // GET /
+  //
+  // Get user information
+  // Get restaurant information (stretch)
+  // Get order information
+  // Get messages
   router.get('/', (req, res) => {
-    // Getting user information and rendering nav page with user object
-    // getUsersById(1)
-    //   .then((user) => {
-    //     res.render('pages/nav', user);
-    //   })
-    //   .catch((err) => {
-    //     res.render('partials/messages', err.messages);
-    //   })
   
     const user_id = 1;
 
@@ -37,12 +35,70 @@ module.exports = (database) => {
     getMenuItems()
       .then((menus) => {
         const templateVars = { menus, user_id };
-        res.render('pages/index', templateVars);
+        
+        getOrderStatusByUserId(user_id)
+          .then((userOrder) => {
+            // if we get the menu items
+            // we check if there are orders for the user
+            if(!userOrder) {
+              console.log("USERORDER (no orders for the user): ", userOrder);
+              //orderItems = [];
+              templateVars.orderItems = userOrder;
+              res.render('pages/index', templateVars);
+            } else {
+              console.log("USERORDER EXIST: ", userOrder);
+              // There is an order to the user with status 1 or 2
+              // if status = 1, get order items
+              getOrderItems(user_id)
+                .then((orderItems) => {
+
+                  let ordersOpen = false;
+                  // if order status = 1 -> show items in the cart
+                  // if order status = 2 -> show order info in the message, and messages
+
+                  // console.log("ORDER ITEMS ->: ", orderItems);
+                  templateVars.orderItems = orderItems.filter(e => e.status === 1);
+                  templateVars.ordersOpen = orderItems.filter(o => o.status === 2 || false);
+
+                  console.log("ORDERS OPEN: ", ordersOpen);
+
+                  console.log("TemplateVars BEFORE RENDER index: ", templateVars);
+
+                  res.render('pages/index', templateVars);
+                })
+
+            }
+          })
+          .catch((err) => {
+            console.log("Error: ", err.messages);
+          })
+
+
+
+        //res.render('pages/index', templateVars);
       })
       .catch((err) => {
         res.render('partials/messages', err.messages);
       })
+
+    // Find if there is order with status 1 or 2 for the user
+    // If no orders with status 1 or 2
+    //    - Render cart as Cart is empty
+    //    - Render messages as "No new messages"
+    // For orders with status 1 render the cart with order items
+
+    // For orders with status 2 render the message box with the messages related to the order
+ 
+
+
+
+
+
+
+
   })
+
+
 
   return router;
 }
