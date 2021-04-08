@@ -32,8 +32,7 @@ module.exports = (database) => {
 
   // GET /users/email/:email
   router.get('/email/:email', (req, res) => {
-    const email = 'alice@bla.com';
-    if (email) {
+  if (email) {
       getUsersByEmail(email)
         .then((users) => {
           res.send(users);
