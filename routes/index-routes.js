@@ -89,7 +89,7 @@ module.exports = (database) => {
       .catch((err) => {
         res.render('partials/messages', err.messages);
       });
-
+  })
 
   return router;
 };
