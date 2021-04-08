@@ -26,7 +26,7 @@
 
 <% let tax = subtotal * 0.13; %>
 <% let total = subtotal + tax; %>
-
+<% let checkout = { }
 
 <div class="cart-footer">
   <div class="cart-total">
@@ -35,11 +35,7 @@
     <p>Total: <%= (total*.01).toFixed(2) %></p>
   </div>
   <form action="/checkout" method="POST">
-    <input type="hidden" id="user_id" name="user_id" value=<%= user_id%>>
-    <input type="hidden" id="order_id" name="order_id" value=<%= menus[item].id %>>
-    <input type="hidden" id="restaurant_id" name="restaurant_id" value=<%= menus[item].restaurant_id %>>
-    <input type="hidden" id="total" name="total" value=<%= total %>>
-    <input type="hidden" id="prep_time" name="prep_time" value=<%= prep_time %>>
+    <input type="hidden" id="user_id" name="user_id" value=<%= user_id %>>
     <button class="checkout">Checkout</button>
   </form>
 </div>
