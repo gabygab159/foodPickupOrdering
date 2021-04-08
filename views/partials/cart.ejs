@@ -39,6 +39,10 @@
   </div>
   <form action="/checkouts" method="POST">
     <input type="hidden" id="user_id" name="user_id" value=<%= user_id %> >
+    <input type="hidden" id="order_id" name="order_id" value=<%= orderOpenInfo[0].id %>>
+    <input type="hidden" id="restaurant_id" name="restaurant_id" value=<%= orderOpenInfo[0].restaurant_id %>>
+    <input type="hidden" id="total" name="total" value=<%= total %>>
+    <input type="hidden" id="prep_time" name="prep_time" value=<%= prep_time %>>
     <button type="submit" class="checkout">Checkout</button>
   </form>
 </div>

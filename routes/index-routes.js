@@ -53,10 +53,17 @@ module.exports = (database) => {
               // There is an order to the user with status 1 or 2
               // if status = 1, get order items
               //console.log("USER ORDERS BEFORE GETTING ITEMS: ", userOrder);
-           
+                templateVars.orderOpenInfo = userOrder.filter(o => o.status === 1);
+                templateVars.orderActiveInfo = userOrder.filter(a => a.status === 2);
+
+
+                console.log(">>>>>>>>: ", templateVars.orderOpenInfo);
+
                 getOrderItems(user_id)
                 .then((orders) => {
-                  
+              
+                  console.log("orders inside getOrderItems index-route: ", orders)
+
                   let orderActive = false;
               
                   // if order status = 1 -> show items in the cart
@@ -67,6 +74,7 @@ module.exports = (database) => {
                   // templateVars.orderOpen = orders.filter(o => o.status === 1 ? o.id : false);
                   templateVars.orderActive = userOrder.filter(a => a.status === 2 ? a.id : false);
                     // templateVars.orderActive = orders.filter(o => o.status === 2 ? o.order_id : false);
+
 
                     console.log("ORDERS OPEN insde getOrderIteas index-route.js: ", templateVars.orderOpen);
                     // console.log("ORDERS ACTIVE: ", templateVars.orderActive.length);
