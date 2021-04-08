@@ -8,6 +8,7 @@
   align-self: flex-start;
   /* margin-right:2em; */
   position: fixed;
+  overflow: auto;
 }
 
 .cart-container {

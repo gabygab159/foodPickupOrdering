@@ -1,6 +1,5 @@
 body {
   background-color: #EEE;
-  /* font-family: 'Amatic SC', cursive; */
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.2em;
 }
@@ -13,3 +12,29 @@ body {
   padding: 6% 0% 2% 2%;
 }
 
+@media only screen and (min-width: 0px) and (max-width: 1400px) {
+
+  .main-container {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+
+  .main-container .right-container {
+    position: relative;
+    width: 94%;
+    margin-top: 10%;
+    margin-left: 2%;
+    overflow:auto;
+  }
+
+  .main-container .menu-container {
+    width: 100%;
+    height: auto;
+    margin:-1%;
+  }
+
+  .main-container .menu-contents {
+    width: auto;
+  }
+}
