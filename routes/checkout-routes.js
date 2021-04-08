@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { updateOrderStatus } = require('../lib/checkout_queries');
+const { updateOrderStatus } = require('../lib/checkout-queries');
 const { sendSMS } = require('../helper-functions/send-sms');
 
 router.use((req, res, next) => {
