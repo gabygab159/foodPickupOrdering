@@ -1,6 +1,11 @@
 const sendSMS = require('./twilio');
 
-const phone = "+13439964241";
+
+let sam = "+13439964241";
+let gaby = "+15149635280";
+let jac = "+14372421211";
+
+const phone = gaby;
 const message = "Testing from twilio helper function";
 
 sendSMS(phone,message)

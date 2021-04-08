@@ -1,28 +1,55 @@
+ 
 
-  <div class="cart-head">
-    <p class="restaurant-name">All About Soups</p>
-    <p class="restaurant-address">1234 Soup Dr. Toronto, ON M6W9R7</p>
-  </div>
-  <div class="cart-body">
-    <!-- if cart empty -->
-    <p class="empty-cart">Your cart is currently empty. Please add items.</p>
-    <!-- if items are added -->
-    <!-- <p class="cart-title">Your Cart</p> -->
-    <ul class="cart-item-container">
-      <li> <span class="cart-item-quantity">2</span>
-        <span class="cart-item">Tomato Soup</span>
-        <span class="cart-item-price">$11</span>
-      </li>
-    </ul>
-  </div>
 
-  <div class="cart-footer">
-    <div class="cart-total">
-      <p>Subtotal</p>
-      <p>Tax</p>
-      <p>Total</p>
-    </div>
-    <form action="/messages/new/:order_id" method="POST">
-      <button type="submit" class="checkout">Checkout</button>
-    </form>
-  </div>
+ 
+ 
+ <!-- Cart on right -->
+
+
+
+     <div class="cart-head">
+       <p class="restaurant-name">All About Soups</p>
+       <p class="restaurant-address">1234 Soup Dr. Toronto, ON M6W9R7</p>
+     </div>
+     <div class="cart-body">
+       
+       <!-- if items are added -->
+       <ul class="cart-item-container">
+         <% if(!orderItems) { %>
+          <!-- if cart empty -->
+          <p class="empty-cart">Your cart is currently empty. Please add items.</p>
+          <% } else { %>
+          <% let subtotal = 0; %>
+            <p class="cart-title">Your Cart</p>
+          <% for (let item in orderItems) { %>
+
+            <li> <span class="cart-item-quantity"><%= orderItems[item].quantity %></span>
+              <span class="cart-item"><%= orderItems[item].name %></span>
+              <span class="cart-item-price"><%= (orderItems[item].price*.01).toFixed(2) %></span>
+            </li>
+
+            <% subtotal += orderItems[item].price; %>
+
+
+         <% } %>
+
+         <% let tax = subtotal * 0.13; %>
+         <% let total = subtotal + tax; %>
+
+
+         <div class="cart-footer">
+           <div class="cart-total">
+             <p>Subtotal: <%= (subtotal*.01).toFixed(2) %></p>
+             <p>Tax: <%= (tax*.01).toFixed(2) %></p>
+             <p>Total: <%= (total*.01).toFixed(2) %></p>
+           </div>
+           <button class="checkout">Checkout</button>
+         </div>
+         
+         <% } %>
+        </div>
+         
+         
+
+
+
