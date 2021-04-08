@@ -1,17 +1,18 @@
 <!-- Cart on right -->
 <div class="cart-head">
-  <p class="restaurant-name">All About Soups</p>
-  <p class="restaurant-address">1234 Soup Dr. Toronto, ON M6W9R7</p>
+  <h2 class="cart-title">Your Cart</h2>
 </div>
 <div class="cart-body">
   <!-- if items are added -->
   <ul class="cart-item-container">
     <% if(!orderOpen) { %>
-    <!-- if cart empty -->
-    <p class="empty-cart">Your cart is currently empty. Please add items.</p>
-    <% } else { %>
-    <% let subtotal = 0; %>
-    <p class="cart-title">Your Cart</p>
+      <!-- if cart empty -->
+      <p class="empty-cart">Your cart is currently empty. Please add items.</p>
+      <% } else { %>
+        <% let subtotal = 0; %>
+        <!-- <p class="cart-title">Your Cart</p> -->
+        <p class="restaurant-name">All About Soups</p>
+        <p class="restaurant-address">1234 Soup Dr. Toronto, ON M6W9R7</p>
     <% for (let item in orderOpen) { %>
     <li> <span class="cart-item-quantity"><%= orderOpen[item].quantity %></span>
       <span class="cart-item"><%= orderOpen[item].name %></span>
