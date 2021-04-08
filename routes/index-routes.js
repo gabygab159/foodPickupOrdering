@@ -30,7 +30,7 @@ module.exports = (database) => {
   // Get order information
   // Get messages
   router.get('/', (req, res) => {
-  
+
     const user_id = 1;
     const restaurant_id = 1;
 
@@ -38,7 +38,7 @@ module.exports = (database) => {
     getMenuItems()
       .then((menus) => {
         const templateVars = { menus, user_id };
-        
+
         getAddressesById(restaurant_id)
         .then((address) => {
           templateVars.addresses = address;
@@ -50,7 +50,7 @@ module.exports = (database) => {
 
             templateVars.restaurants = restaurant;
 
-            getUsersById(user_id) 
+            getUsersById(user_id)
             .then((users) => {
               templateVars.users = users;
 
@@ -74,7 +74,7 @@ module.exports = (database) => {
                     templateVars.orderActiveInfo = userOrder.filter(a => a.status === 2);
                     getOrderItems(user_id)
                     .then((orders) => {
-                      let orderActive = false;                   
+                      let orderActive = false;
                       // if order status = 1 -> show items in the cart
                       // if order status = 2 -> show order info in the message, and messages
                       templateVars.orderOpen = orders.filter(o => o.status === 1); // This variable needs to be renamed to orderOpenItems
@@ -112,7 +112,7 @@ module.exports = (database) => {
     //    - Render messages as "No new messages"
     // For orders with status 1 render the cart with order items
     // For orders with status 2 render the message box with the messages related to the order
- 
+
   })
   return router;
 }

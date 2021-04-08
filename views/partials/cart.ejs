@@ -11,7 +11,6 @@
       <% } else { %>
         <% let subtotal = 0; %>
         <% let prep_time = 0; %>
-        <!-- <p class="cart-title">Your Cart</p> -->
         <p class="restaurant-name"><%= restaurants.name %></p>
         <p class="restaurant-address"><%= addresses.street%><span>, </span><%= addresses.city %></p>
     <% for (let item in orderOpen) { %>
@@ -43,5 +42,4 @@
     <button type="submit" class="checkout">Checkout</button>
   </form>
 </div>
-
 <% } %>
