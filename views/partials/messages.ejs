@@ -7,8 +7,7 @@
   <span class="order-id">You don't have open orders</span>
   <% } else { %>
   <% for (let item in orderActive) { %>
-  <p><span class="order-id">Preparing order #<%= orderActive[item].id %>. Ready for pickup in
-    <%=  %> minutes.</span></p>
+  <p><span class="order-id">Preparing order #<%= orderActive[item].id %>. Please check your text messages for updates!</span></p>
   <% } %>
   <p><span>Thank you!</span></p>
 </div>

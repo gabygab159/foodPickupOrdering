@@ -6,6 +6,7 @@ nav {
   position: fixed;
   width: 100%;
   justify-content: space-between;
+  z-index: 10;
 }
 
 nav input {
