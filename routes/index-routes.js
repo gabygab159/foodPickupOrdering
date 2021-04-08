@@ -41,6 +41,7 @@ module.exports = (database) => {
           .then((userOrder) => {
             // if we get the menu items
             // we check if there are orders for the user
+            console.log("LENGTH: ", userOrder.length);
             if(!userOrder) {
               console.log("USERORDER (no orders for the user): ", userOrder);
               //orderItems = [];
