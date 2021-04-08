@@ -5,12 +5,12 @@ nav {
   align-items: baseline;
   position: fixed;
   width: 100%;
+  justify-content: end;
 }
 
 nav input {
   background: transparent;
   opacity: .7;
-  margin-left: 15em;
 }
 
 .logo-icon {
@@ -28,12 +28,13 @@ font-family: 'Amatic SC', cursive;
 }
 
 nav .user {
-  font-family: 'Amatic SC', cursive;
   font-size: 1em;
-  padding-left: 40em;
 }
 
 nav input {
   padding-left: 3em;
 }
 
+.nav-right {
+  padding-left: auto;
+}

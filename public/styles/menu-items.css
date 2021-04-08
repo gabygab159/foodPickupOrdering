@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   justify-content:space-between;
-  width: 45%;
+  width: 46%;
   height: 45em;
   overflow: auto;
 }
 
 .menu-items {
-  border: black solid 1.5px;
+  border: black solid 2px;
   margin: 2em 2em 0em 2em;
   height: 12em;
   display: flex;
@@ -20,7 +20,7 @@
 /* padding-right: 10em; */
 display: flex;
 flex-direction: column;
-margin-left: 5em;
+margin-left: 3em;
 }
 
 .menu-photo {
@@ -31,9 +31,13 @@ margin-left: 5em;
 }
 
 .menu-price {
-  padding: 1em 0em 1em 0em;
+  padding: .2em 0em 1em 0em;
 }
 
 .add-to-cart {
   margin-bottom: 1em;
+}
+
+h1.menu-name {
+  margin: 1em 0em .2em 0em;
 }
