@@ -36,6 +36,7 @@ module.exports = (database) => {
       .then((menus) => {
         const templateVars = { menus, user_id };
         
+
         getOrderStatusByUserId(user_id)
           .then((userOrder) => {
             // if we get the menu items
@@ -43,24 +44,28 @@ module.exports = (database) => {
             if(!userOrder) {
               console.log("USERORDER (no orders for the user): ", userOrder);
               //orderItems = [];
-              templateVars.orderItems = userOrder;
+              templateVars.orderOpen = userOrder;
+              templateVars.orderActive = userOrder;
               res.render('pages/index', templateVars);
             } else {
-              console.log("USERORDER EXIST: ", userOrder);
+              console.log(">>>>>>USERORDER EXIST: ", userOrder);
               // There is an order to the user with status 1 or 2
               // if status = 1, get order items
+              console.log("USER ORDERS BEFORE GETTING ITEMS: ", userOrder);
               getOrderItems(user_id)
-                .then((orderItems) => {
+              .then((orders) => {
+                
+                let orderActive = false;
+                // if order status = 1 -> show items in the cart
+                // if order status = 2 -> show order info in the message, and messages
+                
+                // console.log("ORDER ITEMS ->: ", orderItems);
+                templateVars.orderOpen = orders.filter(e => e.status === 1);
+                templateVars.orderActive = userOrder.filter(a => a.status === 2 ? a.id : false);
+                  // templateVars.orderActive = orders.filter(o => o.status === 2 ? o.order_id : false);
 
-                  let ordersOpen = false;
-                  // if order status = 1 -> show items in the cart
-                  // if order status = 2 -> show order info in the message, and messages
-
-                  // console.log("ORDER ITEMS ->: ", orderItems);
-                  templateVars.orderItems = orderItems.filter(e => e.status === 1);
-                  templateVars.ordersOpen = orderItems.filter(o => o.status === 2 || false);
-
-                  console.log("ORDERS OPEN: ", ordersOpen);
+                  console.log("ORDERS OPEN: ", templateVars.orderOpen);
+                  console.log("ORDERS ACTIVE: ", templateVars.orderActive.length);
 
                   console.log("TemplateVars BEFORE RENDER index: ", templateVars);
 
@@ -89,12 +94,6 @@ module.exports = (database) => {
 
     // For orders with status 2 render the message box with the messages related to the order
  
-
-
-
-
-
-
 
   })
 
