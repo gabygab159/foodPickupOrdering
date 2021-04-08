@@ -6,18 +6,18 @@
 <div class="cart-body">
   <!-- if items are added -->
   <ul class="cart-item-container">
-    <% if(!orderItems) { %>
+    <% if(!orderOpen) { %>
     <!-- if cart empty -->
     <p class="empty-cart">Your cart is currently empty. Please add items.</p>
     <% } else { %>
     <% let subtotal = 0; %>
     <p class="cart-title">Your Cart</p>
-    <% for (let item in orderItems) { %>
-    <li> <span class="cart-item-quantity"><%= orderItems[item].quantity %></span>
-      <span class="cart-item"><%= orderItems[item].name %></span>
-      <span class="cart-item-price"><%= (orderItems[item].price*.01).toFixed(2) %></span>
+    <% for (let item in orderOpen) { %>
+    <li> <span class="cart-item-quantity"><%= orderOpen[item].quantity %></span>
+      <span class="cart-item"><%= orderOpen[item].name %></span>
+      <span class="cart-item-price"><%= (orderOpen[item].price*.01).toFixed(2) %></span>
     </li>
-    <% subtotal += orderItems[item].price; %>
+    <% subtotal += orderOpen[item].price; %>
     <% } %>
   </div>
 

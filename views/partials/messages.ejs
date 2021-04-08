@@ -1,14 +1,20 @@
 
   
-
         <div class="message-head"></div>
         <div class="message-body"></div>
+        <% if (!orderActive || orderActive.length === 0) { %>
+              <span class="order-id">You don't have open orders</span>
+        <% } else { %>
+
+        <% for (let item in orderActive) { %> 
 
 
-        <span class="order-id">You don't have open orders</span>
+        <p><span class="order-id">Your Order Number <%= orderActive[item].id %> is active. Ready in...</span></p>
 
-        <span>Thank you!</span>
-        <span class="order-id">Your Order id is...INSERT HERE</span>
-        <span class="time">Ready in...</span>
+        <% } %>
+        <!-- <p><span class="time">Ready in...</span></p> -->
+        <p><span>Thank you!</span></p>
         <div class="message-footer"></div>
+
+        <% } %>
 
