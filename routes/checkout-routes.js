@@ -1,20 +1,9 @@
-
-require('dotenv').config();
-
-// const pool = require('./db');
-
-const accountSid = process.env.TW_ASID;
-const authToken = process.env.TW_ATOK;
-const twilio = require('twilio');
-const client = new twilio(accountSid, authToken);
-
-
 const express = require('express');
 const router  = express.Router();
 
 
 const { updateOrderStatus } = require('../lib/checkout_queries')
-const  sendSMS  = require('../helper-functions/twilio')
+const { sendSMS } = require('../helper-functions/send-sms')
 
 router.use((req, res, next) => {
   console.log('router.checkout has been called');
@@ -22,8 +11,21 @@ router.use((req, res, next) => {
 })
 
 module.exports = (database) => {
-  // GET /checkouts/
-  router.get('/', (req, res) => {
+  // post /checkout/
+  router.post('/', (req, res) => {
+
+    console.log("DATA COMING FROM THE CHECKOUT: ", req.body);
+    // res.send(req.body);
+    // checkout form send this
+    // {
+    //   user_id: "1",
+    //   order_id: "7",
+    //   restaurant_id: "1",
+    //   total: "2373",
+    //   prep_time: "12"
+    // }
+
+
     updateOrderStatus(9, 2)
       .then((status) => {
         //We need to send the restaurant with order id
@@ -46,6 +48,8 @@ module.exports = (database) => {
         console.error(err);
         res.status(500).json(err);
       });
+
+
   });
 
   return router;
