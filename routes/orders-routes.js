@@ -57,6 +57,9 @@ module.exports = (database) => {
     // check if there is an order open for the current user
     getOrderStatusByUserId(user_id)
       .then((userOrder) => {
+
+        console.log("DEBUG ADD ITEMS TO ORDER - userOrder: ", userOrder);
+
         if (!userOrder) {
           // Add a new order and the item if there is no open orders for the user
           addNewOrder(order)
@@ -81,7 +84,7 @@ module.exports = (database) => {
 
         } else {
           // Add items to an existing order
-          addItemsToOrder(userOrder.id, id, 1)
+          addItemsToOrder(userOrder[0].id, id, 1)
             .then((item) => {
               res.redirect('/');
             })
