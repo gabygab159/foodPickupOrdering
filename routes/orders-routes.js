@@ -5,11 +5,6 @@ const express = require('express');
 const router  = express.Router();
 const { getOrders, getOrderById, getOrderStatusByUserId, addItemsToOrder, addNewOrder }  = require('../lib/orders-queries');
 
-// Router middlewares with no mount path (will be executed on every request to the router)
-router.use((req, res, next) => {
-  console.log('router.orders has been called');
-  next();
-});
 
 module.exports = (database) => {
   // GET /orders/
@@ -20,21 +15,21 @@ module.exports = (database) => {
       })
       .catch((err) => {
         return err.messages;
-      })
-  })
+      });
+  });
   // GET Orders / id
   router.get('/:id', (req, res) => {
 
-      if (req.params.id) {
+    if (req.params.id) {
       getOrderById(req.params.id)
-      .then((order) => {
-        res.send(order);
-      })
-      .catch((err) => {
-        res.send(err.messages);
-      })
+        .then((order) => {
+          res.send(order);
+        })
+        .catch((err) => {
+          res.send(err.messages);
+        });
     }
-  })
+  });
 
 
   router.post('/new', (req, res) => {
@@ -57,7 +52,6 @@ module.exports = (database) => {
     // check if there is an order open for the current user
 
 
-    console.log("Data from menu ejs: ", order);
 
     // This call must pass the status = 1 since we are looking for
     //  - users with no orders (status = 0 or status =2 )
@@ -65,16 +59,10 @@ module.exports = (database) => {
     getOrderStatusByUserId(user_id)
       .then((userOrder) => {
 
-        console.log(">>>>>DEBUG ADD ITEMS TO ORDER - userOrder: ", userOrder);
-
-        for (let i in userOrder) {
-          console.log(">>> order_id, order_status: ", userOrder[i].id, userOrder[i].status);
-        }
-
         if (!userOrder) {
           // Add a new order and the item if there is no open orders for the user
           addNewOrder(order)
-          .then((neworder) => {
+            .then((neworder) => {
               if (!neworder) {
                 console.log("Error while adding a new order");
               } else {
@@ -86,12 +74,12 @@ module.exports = (database) => {
                   .catch((err) => {
                     console.log("Error addItemsToOrder: ", err.messages);
                     res.render('partials/message', err.messages);
-                  })
+                  });
               }
-          })
-          .catch((err) => {
-            console.log("ERROR: ", err.messages)
-          })
+            })
+            .catch((err) => {
+              console.log("ERROR: ", err.messages);
+            });
 
         } else {
           // Add items to an existing order
@@ -101,14 +89,14 @@ module.exports = (database) => {
             })
             .catch((err) => {
               res.render('partials/message', err.messages);
-            })
+            });
         }
-      })
+      });
 
 
 
-  })
+  });
 
   return router;
 
-  }
+};
