@@ -55,44 +55,24 @@ module.exports = (database) => {
               //console.log("USER ORDERS BEFORE GETTING ITEMS: ", userOrder);
                 templateVars.orderOpenInfo = userOrder.filter(o => o.status === 1);
                 templateVars.orderActiveInfo = userOrder.filter(a => a.status === 2);
-
-
-                console.log(">>>>>>>>: ", templateVars.orderOpenInfo);
-
                 getOrderItems(user_id)
                 .then((orders) => {
-              
-                  console.log("orders inside getOrderItems index-route: ", orders)
-
                   let orderActive = false;
               
                   // if order status = 1 -> show items in the cart
                   // if order status = 2 -> show order info in the message, and messages
-                  
-                  // console.log("ORDER ITEMS ->: ", orderItems);
-                  templateVars.orderOpen = orders.filter(o => o.status === 1);
-                  // templateVars.orderOpen = orders.filter(o => o.status === 1 ? o.id : false);
-                  templateVars.orderActive = userOrder.filter(a => a.status === 2 ? a.id : false);
-                    // templateVars.orderActive = orders.filter(o => o.status === 2 ? o.order_id : false);
 
-
-                    console.log("ORDERS OPEN insde getOrderIteas index-route.js: ", templateVars.orderOpen);
-                    // console.log("ORDERS ACTIVE: ", templateVars.orderActive.length);
-                    // console.log("TemplateVars BEFORE RENDER index: ", templateVars);
+                  templateVars.orderOpen = orders.filter(o => o.status === 1); // This variable needs to be renamed to orderOpenItems
+                  templateVars.orderActive = userOrder.filter(a => a.status === 2 ? a.id : false); // This variable need to be renamed to orderActiveItem
 
                     res.render('pages/index', templateVars);
                   })
-      
-
             }
           })
           .catch((err) => {
             console.log("Error: ", err.messages);
           })
 
-
-
-        //res.render('pages/index', templateVars);
       })
       .catch((err) => {
         res.render('partials/messages', err.messages);
@@ -103,13 +83,8 @@ module.exports = (database) => {
     //    - Render cart as Cart is empty
     //    - Render messages as "No new messages"
     // For orders with status 1 render the cart with order items
-
     // For orders with status 2 render the message box with the messages related to the order
  
-
   })
-
-
-
   return router;
 }
