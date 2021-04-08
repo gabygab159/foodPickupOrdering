@@ -23,4 +23,4 @@ const sendSMS = (phone, message) => {
 
 };
 
-module.exports = sendSMS;
+module.exports = { sendSMS };

@@ -1,21 +1,12 @@
 require('dotenv').config();
 
-// const pool = require('./db');
-
-const accountSid = process.env.TW_ASID;
-const authToken = process.env.TW_ATOK;
-const twilio = require('twilio');
-const client = new twilio(accountSid, authToken);
-
-
 const express = require('express');
 const router = express.Router();
-
 
 const {
   updateOrderStatus
 } = require('../lib/checkout_queries');
-const sendSMS = require('../helper-functions/twilio');
+const { sendSMS } = require('../helper-functions/twilio');
 
 router.use((req, res, next) => {
   console.log('router.checkout has been called');
@@ -54,4 +45,4 @@ module.exports = (database) => {
   });
 
   return router;
-}
+};
