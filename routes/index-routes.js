@@ -11,9 +11,9 @@ const { getMenuItems }  = require('../lib/menus-queries');
 const { getRestaurants } = require('../lib/restaurants-queries');
 const { getMessages, getMessagesById, getMessagesByOrderId } = require('../lib/messages-queries');
 const { getUsersById } = require('../lib/users-queries');
-const { getOrderStatusByUserId, getOrderItems } = require('../lib/orders-queries');
 const { getRestaurantById } = require('../lib/restaurants-queries');
 const { getAddressesById } = require('../lib/address-queries');
+const { getOrdersByUserId, getOrderStatusByUserId, getOrderItems } = require('../lib/orders-queries');
 const { render } = require('ejs');
 
 // Router middlewares with no mount path (will be executed on every request to the router)
@@ -99,9 +99,6 @@ module.exports = (database) => {
           })
         })
 
-
-
-        //res.render('pages/index', templateVars);
       })
       .catch((err) => {
         res.render('partials/messages', err.messages);
@@ -112,13 +109,7 @@ module.exports = (database) => {
     //    - Render cart as Cart is empty
     //    - Render messages as "No new messages"
     // For orders with status 1 render the cart with order items
-
     // For orders with status 2 render the message box with the messages related to the order
-
-
   })
-
-
-
   return router;
 }

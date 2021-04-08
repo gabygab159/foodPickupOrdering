@@ -1,12 +1,8 @@
-require('dotenv').config();
-
 const express = require('express');
 const router = express.Router();
 
-const {
-  updateOrderStatus
-} = require('../lib/checkout_queries');
-const { sendSMS } = require('../helper-functions/twilio');
+const { updateOrderStatus } = require('../lib/checkout_queries')
+const { sendSMS } = require('../helper-functions/send-sms')
 
 router.use((req, res, next) => {
   console.log('router.checkout has been called');
@@ -14,9 +10,23 @@ router.use((req, res, next) => {
 });
 
 module.exports = (database) => {
+  // post /checkout/
+  router.post('/', (req, res) => {
+
+    console.log("DATA COMING FROM THE CHECKOUT: ", req.body);
+    // res.send(req.body);
+    // checkout form send this
+    // {
+    //   user_id: "1",
+    //   order_id: "7",
+    //   restaurant_id: "1",
+    //   total: "2373",
+    //   prep_time: "12"
+    // }
+
   // GET /checkouts/
-  router.get('/', (req, res) => {
-    updateOrderStatus(1, 2)
+
+    updateOrderStatus(9, 2)
       .then((status) => {
         //We need to send the restaurant with order id
         sendSMS("+15149635280", "restaurant order with id")
@@ -42,8 +52,9 @@ module.exports = (database) => {
         console.error(err);
         res.status(500).json(err);
       });
+
+
   });
 
   return router;
 };
-

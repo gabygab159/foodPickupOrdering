@@ -5,11 +5,12 @@
 <div class="cart-body">
   <!-- if items are added -->
   <ul class="cart-item-container">
-    <% if(!orderOpen) { %>
+    <% if(!orderOpen || orderOpen.length === 0 ) { %>
       <!-- if cart empty -->
       <p class="empty-cart">Your cart is currently empty. Please add items.</p>
       <% } else { %>
         <% let subtotal = 0; %>
+        <% let prep_time = 0; %>
         <!-- <p class="cart-title">Your Cart</p> -->
         <p class="restaurant-name"><%= restaurants.name %></p>
         <p class="restaurant-address"><%= addresses.street%><span>, </span><%= addresses.city %></p>
@@ -19,12 +20,13 @@
       <span class="cart-item-price"><%= (orderOpen[item].price*.01).toFixed(2) %></span>
     </li>
     <% subtotal += orderOpen[item].price; %>
+    <% prep_time += orderOpen[item].prep_time; %>
     <% } %>
   </div>
 
 <% let tax = subtotal * 0.13; %>
 <% let total = subtotal + tax; %>
-
+<% let checkout = { } %>
 
 <div class="cart-footer">
   <div class="cart-total">
@@ -32,7 +34,14 @@
     <p>Tax: <%= (tax*.01).toFixed(2) %></p>
     <p>Total: <%= (total*.01).toFixed(2) %></p>
   </div>
-  <button class="checkout">Checkout</button>
+  <form action="/checkouts" method="POST">
+    <input type="hidden" id="user_id" name="user_id" value=<%= user_id %> >
+    <input type="hidden" id="order_id" name="order_id" value=<%= orderOpenInfo[0].id %>>
+    <input type="hidden" id="restaurant_id" name="restaurant_id" value=<%= orderOpenInfo[0].restaurant_id %>>
+    <input type="hidden" id="total" name="total" value=<%= total %>>
+    <input type="hidden" id="prep_time" name="prep_time" value=<%= prep_time %>>
+    <button type="submit" class="checkout">Checkout</button>
+  </form>
 </div>
 
 <% } %>
