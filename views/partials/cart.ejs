@@ -12,7 +12,7 @@
         <% let subtotal = 0; %>
         <!-- <p class="cart-title">Your Cart</p> -->
         <p class="restaurant-name"><%= restaurants.name %></p>
-        <p class="restaurant-address"><%= restaurants.address%></p>
+        <p class="restaurant-address"><%= addresses.street%><span>, </span><%= addresses.city %></p>
     <% for (let item in orderOpen) { %>
     <li> <span class="cart-item-quantity"><%= orderOpen[item].quantity %></span>
       <span class="cart-item"><%= orderOpen[item].name %></span>

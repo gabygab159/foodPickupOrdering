@@ -13,6 +13,7 @@ const { getMessages, getMessagesById, getMessagesByOrderId } = require('../lib/m
 const { getUsersById } = require('../lib/users-queries');
 const { getOrderStatusByUserId, getOrderItems } = require('../lib/orders-queries');
 const { getRestaurantById } = require('../lib/restaurants-queries');
+const { getAddressesById } = require('../lib/address-queries');
 const { render } = require('ejs');
 
 // Router middlewares with no mount path (will be executed on every request to the router)
@@ -34,62 +35,67 @@ module.exports = (database) => {
     const restaurant_id = 1;
 
     // Get all dishes from the menu and render menu_items page with all objects from the menu_items table
+
     getMenuItems()
     .then((menus) => {
 
       const templateVars = { menus, user_id };
 
-      getRestaurantById(restaurant_id)
-        .then((restaurant) => {
+      getAddressesById(restaurant_id)
+        .then((address) => {
+          templateVars.addresses = address;
+          getRestaurantById(restaurant_id)
+          .then((restaurant) => {
 
-          templateVars.restaurants = restaurant;
+            templateVars.restaurants = restaurant;
 
-          getUsersById(user_id)
-          .then((users) => {
+            getUsersById(user_id)
+            .then((users) => {
 
-            templateVars.users = users
+              templateVars.users = users
 
-            getOrderStatusByUserId(user_id)
-            .then((userOrder) => {
-              // if we get the menu items
-              // we check if there are orders for the user
-              console.log("LENGTH: ", userOrder.length);
-              if(!userOrder) {
-                console.log("USERORDER (no orders for the user): ", userOrder);
-                //orderItems = [];
-                templateVars.orderOpen = userOrder;
-                templateVars.orderActive = userOrder;
-                res.render('pages/index', templateVars);
-              } else {
-                console.log(">>>>>>USERORDER EXIST: ", userOrder);
-                // There is an order to the user with status 1 or 2
-                // if status = 1, get order items
-                console.log("USER ORDERS BEFORE GETTING ITEMS: ", userOrder);
-                getOrderItems(user_id)
-                .then((orders) => {
-
-                  let orderActive = false;
-                  // if order status = 1 -> show items in the cart
-                  // if order status = 2 -> show order info in the message, and messages
-
-                  // console.log("ORDER ITEMS ->: ", orderItems);
-                  templateVars.orderOpen = orders.filter(e => e.status === 1);
-                  templateVars.orderActive = userOrder.filter(a => a.status === 2 ? a.id : false);
-                  // templateVars.orderActive = orders.filter(o => o.status === 2 ? o.order_id : false);
-
-                  console.log("ORDERS OPEN: ", templateVars.orderOpen);
-                  console.log("ORDERS ACTIVE: ", templateVars.orderActive.length);
-
-                  console.log("TemplateVars BEFORE RENDER index: ", templateVars);
-
+              getOrderStatusByUserId(user_id)
+              .then((userOrder) => {
+                // if we get the menu items
+                // we check if there are orders for the user
+                console.log("LENGTH: ", userOrder.length);
+                if(!userOrder) {
+                  console.log("USERORDER (no orders for the user): ", userOrder);
+                  //orderItems = [];
+                  templateVars.orderOpen = userOrder;
+                  templateVars.orderActive = userOrder;
                   res.render('pages/index', templateVars);
-                })
+                } else {
+                  console.log(">>>>>>USERORDER EXIST: ", userOrder);
+                  // There is an order to the user with status 1 or 2
+                  // if status = 1, get order items
+                  console.log("USER ORDERS BEFORE GETTING ITEMS: ", userOrder);
+                  getOrderItems(user_id)
+                  .then((orders) => {
 
-              }
+                    let orderActive = false;
+                    // if order status = 1 -> show items in the cart
+                    // if order status = 2 -> show order info in the message, and messages
+
+                    // console.log("ORDER ITEMS ->: ", orderItems);
+                    templateVars.orderOpen = orders.filter(e => e.status === 1);
+                    templateVars.orderActive = userOrder.filter(a => a.status === 2 ? a.id : false);
+                    // templateVars.orderActive = orders.filter(o => o.status === 2 ? o.order_id : false);
+
+                    console.log("ORDERS OPEN: ", templateVars.orderOpen);
+                    console.log("ORDERS ACTIVE: ", templateVars.orderActive.length);
+
+                    console.log("TemplateVars BEFORE RENDER index: ", templateVars);
+
+                    res.render('pages/index', templateVars);
+                  })
+
+                }
+              })
             })
-          })
-          .catch((err) => {
-            console.log("Error: ", err.messages);
+            .catch((err) => {
+              console.log("Error: ", err.messages);
+            })
           })
         })
 
