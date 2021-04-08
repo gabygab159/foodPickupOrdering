@@ -5,7 +5,7 @@ nav {
   align-items: baseline;
   position: fixed;
   width: 100%;
-  justify-content: end;
+  justify-content: space-between;
 }
 
 nav input {
@@ -36,5 +36,5 @@ nav input {
 }
 
 .nav-right {
-  padding-left: auto;
+  margin-right:5%;
 }
