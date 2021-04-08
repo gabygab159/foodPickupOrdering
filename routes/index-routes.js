@@ -70,6 +70,8 @@ module.exports = (database) => {
                   // There is an order to the user with status 1 or 2
                   // if status = 1, get order items
                   console.log("USER ORDERS BEFORE GETTING ITEMS: ", userOrder);
+                  templateVars.orderOpenInfo = userOrder.filter(o => o.status === 1);
+                  templateVars.orderActiveInfo = userOrder.filter(a => a.status === 2);
                   getOrderItems(user_id)
                   .then((orders) => {
 
@@ -78,14 +80,9 @@ module.exports = (database) => {
                     // if order status = 2 -> show order info in the message, and messages
 
                     // console.log("ORDER ITEMS ->: ", orderItems);
-                    templateVars.orderOpen = orders.filter(e => e.status === 1);
-                    templateVars.orderActive = userOrder.filter(a => a.status === 2 ? a.id : false);
+                    templateVars.orderOpen = orders.filter(o => o.status === 1); // This variable needs to be renamed to orderOpenItems
+                    templateVars.orderActive = userOrder.filter(a => a.status === 2 ? a.id : false); // This variable need to be renamed to orderActiveItem
                     // templateVars.orderActive = orders.filter(o => o.status === 2 ? o.order_id : false);
-
-                    console.log("ORDERS OPEN: ", templateVars.orderOpen);
-                    console.log("ORDERS ACTIVE: ", templateVars.orderActive.length);
-
-                    console.log("TemplateVars BEFORE RENDER index: ", templateVars);
 
                     res.render('pages/index', templateVars);
                   })
