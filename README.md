@@ -48,4 +48,4 @@ Foodio is an easy to use app that allows hungry clients and local restaurants to
 
 ## Screenshots
 
-!["Foodio landscape"](URL)
+!["Foodio landscape"](https://github.com/gabygab159/foodPickupOrdering/blob/master/docs/foodio-screenshot-landscape.png?raw=true)
