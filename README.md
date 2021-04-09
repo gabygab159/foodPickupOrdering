@@ -1,15 +1,9 @@
-LHL Node Skeleton
+# Foodio
 =========
 
-## Project Setup
+## Project 
 
-The following steps are only for _one_ of the group members to perform.
-
-1. Create your own copy of this repo using the `Use This Template` button, ideally using the name of your project. The repo should be marked Public
-2. Verify that the skeleton code now shows up in your repo on GitHub, you should be automatically redirected
-3. Clone your copy of the repo to your dev machine
-4. Add your team members as collaborators to the project so that they can push to this repo
-5. Let your team members know the repo URL so that they use the same repo (they should _not_ create a copy/fork of this repo since that will add additional workflow complexity to the project)
+Foodio is an easy to use app that allows hungry clients and local restaurants to conduct business without having to speak. When clients place an order through Foodio the restaurant will receive the order via SMS. The client will then receive an SMS specifying the order number and the expected time it will take for their food to be ready to be picked up. The client will receive a final SMS when the order is ready. 
 
 
 ## Getting Started
@@ -40,4 +34,18 @@ The following steps are only for _one_ of the group members to perform.
 
 - Node 10.x or above
 - NPM 5.x or above
-- PG 6.x
+- PG 8.5 or above
+- Bindings 1.5 or above
+- Body-parser 1.19 or above
+- Chalk 2.4.2 or above
+- Dotenv 2.0
+- Ejs 2.7.4 or above
+- Express 4.17.1 or above
+- Morgan 1.10 or above
+- Node-sass-middleware 0.11.0 or above
+- Nodemon 2.0.7 or above
+- Twilio 3.59.0 or above
+
+## Screenshots
+
+!["Foodio landscape"](URL)
