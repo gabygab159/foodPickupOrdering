@@ -2,7 +2,7 @@ const { sendSMS }= require('./send-sms');
 
 
 
-let sam = "+13439964241";
+let sam = "+1XXXXXXXXXX";
 let gaby = "+15149635280";
 let jac = "+14372421211";
 
